@@ -1,0 +1,173 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 1: Review of Statistics
+
+## Question 1
+
+A survey was conducted to ask employees how long they commute to work (in minutes). The results are captured in Table 1
+
+| PID | Commuting Time |
+|:---:|:--------------:|
+|  1  |       30       |
+|  2  |       45       |
+|  3  |       10       |
+|  4  |       91       |
+|  5  |       5        |
+|  6  |       18       |
+|  7  |       46       |
+
+: Table 1: Results of a Transport Survey
+
+a\. What is the arithmetic mean for the commuting time? `r mcq(c("25", "30", answer = "35", "15"))`
+
+b\. What is the variance and standard deviation of the commuting time?
+
+-   `variance`: `r mcq(c(answer = "866", "742", "750"))`
+-   `standard deviation`: `r mcq(c( "866", answer ="29.43", "27.24"))`
+
+## Question 2
+
+Calculate the probability corresponding to the shaded area
+
+![]()
+
+![](images/Q2a.png){width="300"}
+
+-   `Right area`: `r mcq(c(answer = "47.5", "13.5", "34"))`
+-   `Left area`: `r mcq(c(answer = "13.5", "34", "47.5"))`
+-   `Total`: `r fitb(61)`
+
+`r hide("I need a hint")`
+
+Use figure in lecture 1 part 2 slides to derive the size of areas.
+
+`r unhide()`
+
+![](images/Q2b.png){width="300"}
+
+-   `Right area`: `r mcq(c(answer = "47.5", "13.5", "34"))`
+-   `Left area`: `r mcq(c("13.5", "34", answer ="47.5"))`
+-   `Total`: `r fitb(95)`
+
+`r hide("I need a hint")`
+
+Use figure in lecture 1 part 2 slides to derive the size of areas.
+
+`r unhide()`
+
+## Question 3
+
+R will often present its output with scientific notation, so a good understanding of scientific notation is important for interpreting regression results.
+
+a\. Write the following numbers in scientific notation:
+
+-   `-0.1`: `r mcq(c(answer = "-1e-1", "-10e-1", "-1e-2"))` (equivalent to $-1 \times 10^{-1}$)
+
+-   `100`: `r mcq(c( "1e1", answer ="1e2", "1e3"))` (equivalent to $1\times10^2$)
+
+-   `0.000000054`: `r mcq(c( "5.4e-7", answer ="5.4e-8", "5.4e-9"))` (equivalent to $5.4\times10^{-8}$)
+
+-   `814,502,856,329,062,153,636`: `r mcq(c( "8.1e19", answer ="8.1e20", "8.1e21"))` (equivalent to $8.1\times10^{20}$)
+
+b\. Write the following numbers derived from R in decimal form:
+
+-   `3e01`: `r mcq(c(answer = "30", "3", "0.3"))`
+
+-   `3e-01`: `r mcq(c("30", answer = "0.3", "3"))`
+
+-   `6.5e-09`: `r mcq(c("0.065",  "0.00000065", answer = "0.0000000065"))`
+
+-   `5.2e05`: `r mcq(c("5,200",  "520", answer = "520,000"))`
+
+## Question 4
+
+A random variable $X$ is defined to be the difference between the higher value and the lower value when two dice are thrown. If they have the same value, $X$ is defined to be zero.
+
+a\. Find the probability distribution for $X$.
+
+`r hide("I need a hint")`
+
+Use a table to identify all possible outcomes, see lecture 1 part 2 slides on "Discrete Random Variables and Expectations"
+
+`r unhide()`
+
+| Value of $X$ |      0      |      1       |             2             |  3   |             4             |             5             |
+|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+|  Frequency   | `r fitb(6)` | `r fitb(10)` |        `r fitb(8)`        |  6   |             4             |             2             |
+| Probabilitiy |    6/36     |    10/36     | `r fitb(8)` /`r fitb(36)` | 6/36 | `r fitb(4)` /`r fitb(36)` | `r fitb(2)` /`r fitb(36)` |
+
+b\. Find the expected value of $X$ (**Fill in the last blank with four decimal numbers**).
+
+|  $X$  |  $p$  |                            $Xp$                            |
+|:-----:|:-----:|:----------------------------------------------------------:|
+|   0   | 6/36  |                      $0\times 6/36=0$                      |
+|   1   | 10/36 |                   $1\times 10/36=10/36$                    |
+|   2   | 8/36  |                    $2\times 8/36=16/36$                    |
+|   3   | 6/36  |           `r mcq(c(answer = "18/36", "12/36"))`            |
+|   4   | 4/36  |           `r mcq(c("12/36", answer = "16/36"))`            |
+|   5   | 2/36  |           `r mcq(c("12/36", answer = "10/36"))`            |
+| Total |       | $E(X)=\mu$= `r fitb(70)` /`r fitb(36)` ≈ `r fitb(1.9444)`  |
+
+c\. Calculate $E{(X^2)}$ for $X$.
+
+|  $X$  | $X^2$ |  $p$  |                $X^2p$                 |
+|:-----:|:-----:|:-----:|:-------------------------------------:|
+|   0   |   0   | 6/36  |           $0\times 6/36=0$            |
+|   1   |   1   | 10/36 |         $1\times 10/36=10/36$         |
+|   2   |   4   | 8/36  |         $4\times 8/36=32/36$          |
+|   3   |   9   | 6/36  | `r mcq(c(answer = "54/36", "18/36"))` |
+|   4   |  16   | 4/36  | `r mcq(c("16/36", answer = "64/36"))` |
+|   5   |  25   | 2/36  | `r mcq(c("10/36", answer = "50/36"))` |
+| Total |       |       | $E(X^2)$= `r fitb(210)` /`r fitb(36)` |
+
+d\. Calculate the population variance and the standard deviation of $X$ (**Fill in all the blanks with four decimal numbers**).
+
+`r hide("I need a hint")`
+
+use ${\sigma^2} = \sum{(X-E(X))}^2p$ to calculate the variance
+
+`r unhide()`
+
+|  $X$  |  $p$  |      $X-E(X)$       |     $(X-E(X))^2$     |              $(X-E(X))^2p$              |
+|:------------:|:---------:|:--------------------:|:----------------------:|:-----------------------------:|
+|   0   | 6/36  | $0-1.9444=-1.9444$  | $(-1.9444)^2=3.7087$ |       $3.7087\times 6/36=0.6301$        |
+|   1   | 10/36 | $1-1.9444=-0.9444$  | $(-0.9444)^2=0.8919$ |       $0.8919\times 10/36=0.2477$       |
+|   2   | 8/36  | $(2-1.9444)=0.0556$ | $(0.0556)^2=0.0031$  |       $0.0031\times 8/36=0.0007$        |
+|   3   | 6/36  |  `r fitb(1.0556)`   |   `r fitb(1.1143)`   |            `r fitb(0.1857)`             |
+|   4   | 4/36  |  `r fitb(2.0556)`   |   `r fitb(4.2255)`   |            `r fitb(0.4695)`             |
+|   5   | 2/36  |  `r fitb(3.0556)`   |   `r fitb(9.3367)`   |            `r fitb(0.5187)`             |
+| Total |       |                     |                      | variance ${\sigma^2}$= `r fitb(2.0525)` |
+
+The population variance ${\sigma^2}$ is `r fitb(2.0525)` and the standard deviation is $\sqrt{{\sigma^2}}=$ `r fitb(1.4327)`
+
+## Question 5
+
+The formula for the population variance is: \begin{equation*}
+    \sigma^2=\frac{\sum_{i=1}^{N}({Y_{i}-\mu})^2}{N}
+\end{equation*}
+
+Show with using Summation Operator rules (see lecture 1 part 2 slides) how this formula can be simplified to:
+
+```{=tex}
+\begin{equation*}
+    \sigma^2=\frac{\sum_{i=1}^{N}{Y_{i}^2}}{N}-{\mu}^2
+\end{equation*}
+```
+`r hide("I need a hint")`
+
+use $\sum_{i=1}^{N}{Y_{i}}=\sum Y=N\mu$
+
+`r unhide()`
