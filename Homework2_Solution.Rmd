@@ -1,0 +1,185 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 2: Introduction to Regression Analysis - Solution
+
+## Question 1
+
+The data below show alcohol expenditure and income (both in £s per week) for sample of 17 families.
+
+| Family | Alcohol Expenditure | Income |
+|:------:|:-------------------:|:------:|
+|   1    |        26.17        |  487   |
+|   2    |        19.49        |  574   |
+|   3    |        17.87        |  439   |
+|   4    |        16.90        |  367   |
+|   5    |        4.21         |  299   |
+|   6    |        32.08        |  743   |
+|   7    |        30.19        |  433   |
+|   8    |        22.62        |  547   |
+|   9    |        9.86         |  303   |
+|   10   |        13.32        |  370   |
+|   11   |        9.24         |  299   |
+|   12   |        47.35        |  531   |
+|   13   |        26.80        |  506   |
+|   14   |        33.44        |  613   |
+|   15   |        21.41        |  472   |
+|   16   |        16.06        |  253   |
+|   17   |        24.98        |  374   |
+
+a\. Draw and XY plot of the data and comment.
+
+`r hide("I need a hint")`
+
+Load the data into R by copying the following command:
+
+data $<$- data.frame(alc = c(26.17, 19.49, 17.87, 16.90, 4.21, 32.08, 30.19, 22.62, 9.86, 13.32, 9.24, 47.35, 26.80, 33.44, 21.41, 16.06, 24.98), inc = c(487, 574, 439, 367, 299, 743, 433, 547, 303, 370, 299, 531, 506, 613, 472, 253, 374))
+
+Alternatively, you can manually enter the data in Excel, save it as a .xls file, and then import it into R using the readxl function.
+
+`r unhide()`
+
+Complete the code to get this scatter chart:
+
+`r mcq(c("ggplot", "scatter",  answer = "plot"))`(data\$alc \~ data\$inc, ylab = "Alcohol expenditure", xlab = "Income", pch =20)
+
+![](images/Chart.png)
+
+b\. From the chart, would you expect the line of best fit to slope up or down? In theory, which way should it slope?
+
+From the graph there appears to be a `r mcq(c("no", answer = "positive", "negative"))` relationship and the line of best fit should slope upwards. One might expect those with `r mcq(c("no", answer = "more", "less"))` income to spend `r mcq(c("no", answer = "more", "less"))` on alcohol.
+
+<br>
+
+c\. What would you expect the correlation coefficient to be, approximately?
+
+There is a reasonably good fit of the data, so a `r mcq(c("no", answer = "positive", "negative"))` correlation of about 0.6 to 0.7 might be expected.
+
+<br>
+
+d\. Calculate the Covariance between alcohol expenditure and income.
+
+Complete the code to get this covariance table:
+
+`r mcq(c("cor", answer = "cov", "var"))`(data)
+
+![](images/Covariance.png){width="200"}
+
+Covariance between alcohol expenditure and income is `r fitb(961.9388)` (Fill in the blank with four decimal numbers).
+
+`r hide("Click here to see the solution")`
+
+Covariance between alcohol expenditure and income is `961.9388` (Fill in the blank with four decimal numbers).
+
+`r unhide()`
+
+<br>
+
+e\. Calculate the correlation coefficient between alcohol spending and income.
+
+Complete the code to get this correlation table:
+
+`r mcq(c(answer = "cor",  "cov", "var"))`(data)
+
+![](images/Correlation.png){width="200"}
+
+Correlation coefficient between alcohol spending and income is `r fitb(0.6969)`(Fill in the blank with four decimal numbers).
+
+`r hide("Click here to see the solution")`
+
+Correlation coefficient between alcohol spending and income is `0.6969`(Fill in the blank with four decimal numbers).
+
+`r unhide()`
+
+<br>
+
+## Question 2
+
+What is the role of the stochastic error term $u_{i}$ in regression analysis? What is the difference between the stochastic error term $u_{i}$ and the residual, $\hat{u}_{i}$?
+
+The stochastic error term $u_{i}$ is the effect of many small (so small we are unable to effectively model them) effects on the `r mcq(c(answer = "dependent",  "independent"))` variable, or the result of pure random variation in the dependent variable.
+
+The residual $\hat{u}_{i}$ is the `r mcq(c(answer = "estimated",  "same as"))` stochastic error term. This will include any over/underestimate because of differences between the population and estimated parameters – and can be smaller or larger than the stochastic error term.
+
+<br>
+
+## Question 3
+
+The figure below shows the regression line based on variable $X$ ans $Y$. SRF represents the sample regression function and PRF the population regression function. Label the diagram with the following:
+
+`r hide("I need a hint")`
+
+Use figure in lecture 2 part 2 slides to give labels.
+
+`r unhide()`
+
+![](images/SRFPRF.png){width="400"}
+
+`r hide("Click here to see the solution")`
+
+![](images/SRFPRFlabel.png){width="450"}
+
+`r unhide()`
+
+<br>
+
+## Question 4
+
+The table below shows the average annual percentage rates of growth of employment, e, and real GDP, g, for 31 OECD countries for the period 2002–2007. The regression output shows the result of regressing e on g. Provide an interpretation of the coefficients.
+
+![](images/employment.png){width="500"}
+
+![](images/regressionoutput.png){width="550"}
+
+-   Interpretation of the GDP coefficient: Literally the regression implies that a `r fitb(1)` percent increase in the growth of GDP generates a `r fitb(0.2379)` percent increase in the rate of growth of employment (Fill in the blanks with four decimal numbers). 
+
+-   Interpretation of the intercept: The intercept suggests that, if GDP is static, employment will still grow at a rate of `r fitb(0.4919)` percent per year (Fill in the blanks with four decimal numbers).
+
+`r hide("Click here to see the solution")`
+
+-   Interpretation of the GDP coefficient: Literally the regression implies that a `1` percent increase in the growth of GDP generates a `0.2379` percent increase in the rate of growth of employment.
+
+-   Interpretation of the intercept: The intercept suggests that, if GDP is static, employment will still grow at a rate of `0.4919` percent per year.
+
+`r unhide()`
+
+<br>
+
+## Question 5
+
+In the lecture we introduced the first order conditions of the RSS minimisation problem: \begin{equation*}
+    \frac{\partial RSS}{\partial \hat{\beta}_{1}}=2n\hat{\beta}_{1}-2\sum_{i=1}^{N}{Y}+2\hat{\beta}_{2}\sum_{i=1}^{N}{X}=0
+\end{equation*}
+
+```{=tex}
+\begin{equation*}   
+    \frac{\partial RSS}{\partial \hat{\beta}_{2}}=2\hat{\beta}_{2}\sum_{i=1}^{N}{X^2}-2\sum_{i=1}^{N}{XY}+2\hat{\beta}_{1}\sum_{i=1}^{N}{X}=0
+\end{equation*}
+```
+Derive $\hat{\beta}_{1}$ and $\hat{\beta}_{2}$ mathematically using the first order conditions.
+
+`r hide("I need a hint")`
+
+$\sum_{i=1}^{N}{X}=n \bar{X}$
+
+`r unhide()`
+
+`r hide("Click here to see the solution")`
+
+![](images/WeChat3ea997ebf44b5923beec26b32142ce0e.jpg){width="700"}
+
+The expression here is a bit different from what we see in the lecture slides. However, if you are interested in how we get the same expression as lecture slides, please read Chapter 1 of Dougherty's book, just some math work.
+
+`r unhide()`
