@@ -1,0 +1,265 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# R Workshop 0 - Your first Step
+
+RStudio has four main windows, that often have more than just one purpose. Figure 1 provides a brief description of each window. We will use all of them during our module, but the most important ones will be the console and editor pane.
+
+![Figure 1. RStudio](images/Rdashboard.png)
+
+<br>
+
+# Preparing your workspace
+
+Before you start working with R, you should undertake the following steps to facilitate your workflow:
+
+**Step 1**. **Create a folder.**
+
+Before every session, create a folder on your computer to save all your **worksheets, datasets and solutions**. Make sure you remember where that folder is and that you know the path to that folder.
+
+Give your folder any name that makes it easy to remember what it contains, e.g. 'RWorkshop1' in your 'BS2280' folder.
+
+If you use university computer, create a folder on the university network drive (H:), so that you can access your data on any PC on campus.
+
+<br>
+
+**Step 2**. **Open R and set your working directory.**
+
+This step is to tell R to use the folder you created. R will save all files in there and, if you want to open a dataset, R will also look in this folder first.
+
+Menu bar → Click Session → Set Working Directory → Choose Directory → **Select your created folder in step 1**
+
+![](images/set%20working%20directory.png){width="417"}
+
+**Example**. Suppose I create a folder called RWorkshop1 under Teaching BS2280 on my desktop, and select folder RWorkshop 1 when set working directly, the console window will show[^1]:
+
+[^1]: This is an example. You may have given your directory a different name. Besides, this is a Windows user example, Mac users will get slightly different results
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+setwd("~/Desktop/Teaching/BS2280/RWorkshop1")     # for Mac users
+setwd("C:/Teaching/BS2280/RWorkshop1")            # for Windows users
+```
+
+<br>
+
+**Step 3.** **Open an R script file before you start with your analysis.**
+
+Click on the little white sheet with the white plus over a green circle to open an R script:
+
+![](images/New%20scipt.png){width="236"}
+
+R script file is just a **text file**, which can help us to save codes.
+
+<br>
+
+**Step 4.** **Type the codes in R script file.**
+
+Type ths codes in R script and you can add comments to your commands through the usage of a hash tag, so that you have commentary about your work and you won't forget what you have done previously. The words after a hash tag will not be executed, for example
+
+```{r message=FALSE, warning=FALSE, results='hide',error=TRUE}
+5+2       # Summation     
+```
+
+However, by just typing these commands into the script file nothing is actually happening. If you want R to execute any of the commands in your script file you have to do one of the following:
+
+1\. Press the "Run" button, in which case R will run the command in which the mouse curser currently is
+
+2\. Press the "CTRL"+"ENTER" on the keyboard, in which case R will run the command in which the mouse curser currently is
+
+3\. Highlight several lines and press "CTRL"+"ENTER" on the keyboard, in which case R will run the commands in the highlighted lines
+
+**Example**
+
+```{r message=FALSE, warning=FALSE, results='hide',error=TRUE}
+5+2       # Summation     
+```
+
+Type the above command in the R script and put the mouse cursor next to the command
+
+![](images/run-01.png)
+
+<br>
+
+Click **Run** and you will see the Console window shows the command that has been executed. Here, R has calculated 5+2 and give you the result 7.
+
+![](images/after%20run-01.png)
+
+With some practice, you will realise that using the keyboard instead of the mouse will be much more time-efficient.
+
+<br>
+
+**Step 5.** **Save your work.**
+
+Different ways exist to save your work.
+
+-   **Option 1.** Save as an R script
+
+Save the file in .R format. The R script will contain all your commands you have used in the current session and allows you to replicate what we have done in the future.
+
+Click the disk icon. In the new window, name the R script file and save it in the folder you created in the step 1 (e.g. RWorkshop1).
+
+![](images/save.png)
+
+For more complex tasks that require you to reproduce your work, use R scripts. R scripts, which are saved in '.R' format, are like a written recipe of your work which allows you to reproduce your work.[^2] If you use R scripts, you do not have to save your workspace image. I recommend to create an R script for each of your workshops.
+
+[^2]: If you have used Stata before, R scripts are equivalent to Stata do-files.
+
+<br>
+
+-   **Option 2.** Save as a workspace image
+
+If you save your session as a workspace image, all your objects you have created will ba saved in a **`.Rdata`** file. You can load this work image file to continue working where you have left off. You can either save it via the menu, or use the command line:
+
+```{r message=FALSE, warning=FALSE, results='hide',error=TRUE}
+save.image("MyRsession.Rdata")
+```
+
+Here, I saved the workspace image under the name 'MyRsession.Rdata'. R will also automatically create a '.history' file that is saved alongside the workspace image. You can open it with any text editor, such as Notepad, Emacs, Vim, Pico or Nano. It contains a line-by-line history of all the commands that have been executed in the console window for the associated session.
+
+<br>
+
+**Quick exercise:**
+
+To facilitate my workflow in R,
+
+First, I need to `r mcq(c("Save my work", "Open R and set my working directory", answer = "Create a folder", "Type the codes in R script file", "Open an R script file before I start my analysis"))` to save my worksheets and datasets.
+
+Second, I need to `r mcq(c("Save my work", answer = "Open R and set my working directory", "Create a folder", "Type the codes in R script file", "Open an R script file before I start my analysis"))` to tell R which folder I have created to save the datasets so that R can find the datasets.
+
+Third, I need to `r mcq(c("Save my work", "Open R and set my working directory", "Create a folder", "Type the codes in R script file", answer = "Open an R script file before I start my analysis"))` because it can help me to save codes.
+
+Fourth, I need to `r mcq(c("Save my work", "Open R and set my working directory", "Create a folder", answer = "Type the codes in R script file", "Open an R script file before I start my analysis"))` where I can add comments to my codes and I won't forget what I have done before.
+
+Last, I need to `r mcq(c(answer = "Save my work", "Open R and set my working directory", "Create a folder", "Type the codes in R script file", "Open an R script file before I start my analysis"))` for future use.
+
+<br>
+
+# Using R as a calculator
+
+Let's start with some basics and use R as a calculator. All the standard mathematical operations can be undertaken with R. Type these codes in your R script file and click Run!
+
+```{r}
+5+2       # Summation
+5*2       # Multiplication
+5/2       # Division
+5^2       # Power
+sqrt(5)   # Square Root
+```
+
+<br>
+
+# Assigning objects
+
+You can also store any of your results as an R object and use it for further calculations. Type these codes in your R script file and click Run! For example, let's assign the result of a simple mathematical calculation to the object x:
+
+```{r}
+x <- 5*2
+x
+X <- 3*2
+X
+```
+
+Note that x and X are different variables, so R is case-sensitive!
+
+We assign a value to an object with **`<-`** ('smaller than' sign followed by a 'minus'). To print[^3] the value of the object, we just type its name into the command line. Let's assign the square of x to a new object y:
+
+[^3]: 'Print' is used synonymously for 'display', so you don't have to worry that your printer will switch itself on!
+
+```{r}
+y <- x^2
+y
+```
+
+<br>
+
+# Installing and Loading R Packages
+
+The base installation of R comes already with an impressive number of in-built functions, e.g. the `sqrt()` function that we have used in the previous exercise. However, for more specialised statistical techniques, we have to install and activate R packages that are developed and maintained by a large number of developers of the R community.
+
+<br>
+
+In R, functions are stored in packages. To use a specific function, you first need to install the relevant package and then activate it into your session. Once the package is activated, you can access and use the functions it contains.
+
+For instance, if we intend to use the `read_excel()` function for importing Excel data in R, it's essential to note that `read_excel()` is stored in a package called **`readxl`**
+
+Therefore, to make use of `read_excel()`, you must first install and activate the `readxl` package. Once activated, you will have access to the "read_excel" function within the `readxl` package for data importation.
+
+<br>
+
+Two ways to install and activate packages in R.
+
+1.  Use package window
+
+The easiest way to install packages is through the RStudio package window (that's the window with the yellow border in Figure 1).
+
+Click on the Packages tab and you will see all the packages that are already installed. To activate them, tick the box next to the package name.
+
+If the required package is not there, you can install it via the Install tab. In the newly opened window, just type in the R package name and click 'install'. To update the installed R packages click on the Update tab that is just next to the Install tab.
+
+![](images/install.png)
+
+2.  Use codes
+
+You can also use the command line to install, activate and update packages. Assume you want to install the R-package **`readxl`**:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+install.packages("readxl") 
+```
+
+After the installation we activate the package with:
+
+```{r, message=FALSE, warning = FALSE}
+library("readxl")
+```
+
+**Key point:**
+
+Install package: just do **once**
+
+Activate package: do it **every time you need**
+
+This means that you have installed the **`readxl`** package this time. In future instances, there is no need to reinstall it. However, you will need to activate it by typing the command `library(readxl)` every time you want to use the `read_excel()` function stored in it.
+
+<br>
+
+**Quick exercise:**
+
+-   What function is used to install a package in R? `r mcq(c(answer = "install.packages", "install.package","library", "libraries"))`
+
+-   What function activates a package that is already on your computer? `r mcq(c("install.packages", "install.package", answer = "library", "libraries"))`
+
+-   We install packages in R `r mcq(c(answer = "once", "twice","every time we need"))`
+
+-   We activate packages in R `r mcq(c("once", "twice", answer = "every time we need"))`
+
+<br>
+
+To update all installed packages, type:
+
+```{r, message=FALSE, warning = FALSE, results='hide'}
+update.packages
+```
+
+<br>
+
+Finally, if you should ever struggle with some of R's commands, a look into R's help-files can be very helpful. To access the help file, you have to type into the console window '?' and then the command name. For example, if you want to know more about the command **`getwd()`**, type the following:
+
+```{r message=FALSE, warning=FALSE, results='hide',error=TRUE}
+?sqrt()
+```
+
+The quickest way to close R is to use the command line: `q()`
+
+**Now you are ready for the first data exercise - R Workshop 1.**
