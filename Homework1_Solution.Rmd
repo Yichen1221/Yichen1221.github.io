@@ -64,6 +64,8 @@ We already calculated the mean and found the value $\bar{x}=35$. Inserting the v
 ```
 Why is the numerator of the sample variance $n-1$ ? If we would not do it, the estimator would not converge to the true value of the variance. `r unhide()`
 
+<br>
+
 ## Question 2
 
 Calculate the probability corresponding to the shaded area
@@ -96,6 +98,8 @@ Use figure in lecture 1 part 2 slides to derive the size of areas.
 
 `r unhide()`
 
+<br>
+
 ## Question 3
 
 R will often present its output with scientific notation, so a good understanding of scientific notation is important for interpreting regression results.
@@ -119,6 +123,32 @@ b\. Write the following numbers derived from R in decimal form:
 -   `6.5e-09`: `r mcq(c("0.065",  "0.00000065", answer = "0.0000000065"))`
 
 -   `5.2e05`: `r mcq(c("5,200",  "520", answer = "520,000"))`
+
+`r hide("Click here to see the solution")`
+a\. Write the following numbers in scientific notation:
+
+-   `-0.1`: -1e-1 (equivalent to $-1 \times 10^{-1}$)
+
+-   `100`: 1e2 (equivalent to $1\times10^2$)
+
+-   `0.000000054`: 5.4e-8 (equivalent to $5.4\times10^{-8}$)
+
+-   `814,502,856,329,062,153,636`: 8.1e20 (equivalent to $8.1\times10^{20}$)
+
+b\. Write the following numbers derived from R in decimal form:
+
+-   `3e01`: 30
+
+-   `3e-01`: 0.3
+
+-   `6.5e-09`: 0.0000000065
+
+-   `5.2e05`: 520,000
+
+`r unhide()`
+
+<br>
+
 
 ## Question 4
 
@@ -236,6 +266,8 @@ The population variance ${\sigma^2}$ is `r fitb(2.0525)` and the standard deviat
 
 The population variance ${\sigma^2}$ is $2.0525$ and the standard deviation is $\sqrt{{\sigma^2}}=1.4327$
 `r unhide()`
+
+<br>
 
 ## Question 5
 
