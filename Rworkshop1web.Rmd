@@ -45,7 +45,9 @@ Menu bar → Click Session → Set Working Directory → Choose Directory → Se
 
 <br>
 
-#### **For each task, replace the missing part XXXX to make these codes work.**
+## **For each task, replace the missing part XXXX to make these codes work.**
+
+<br>
 
 # Task 1. Import the Excel data set into R.
 
@@ -53,7 +55,7 @@ The native data format of R is **`.Rdata`**, however, you can also open other fo
 
 -   You can use the package window (that's the window with the yellow border in Figure 1) and tick the box next to the package name.
 
-![Figure 1](images/libraryreadxl.jpg){width="529"}
+![Figure 1](images/libraryreadxl.jpg){width="700"}
 
 <br>
 
@@ -77,6 +79,7 @@ We import the data set with the `read_excel()` function and store this dataset a
 crime <- XXXX("crime.xls")
 ```
 
+<br>
 **Option 2**. Use menu bar
 
 Menu bar → Click File → Import Dataset → From Excel
@@ -168,6 +171,8 @@ We use `rank()` to sort popdens from the smallest to the largest value and assig
 ```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
 crime.popdens1 <- crime[XXXX,]
 ```
+
+<br>
 
 To sort the data from the largest to the smallest number, we set the order argument decreasing to TRUE, and assign it to an another new created dataset called `crime.popdens2`
 
