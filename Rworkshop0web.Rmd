@@ -254,7 +254,7 @@ update.packages
 
 <br>
 
-Finally, if you should ever struggle with some of R's commands, a look into R's help-files can be very helpful. To access the help file, you have to type into the console window '?' and then the command name. For example, if you want to know more about the command **`getwd()`**, type the following:
+Finally, if you should ever struggle with some of R's commands, a look into R's help-files can be very helpful. To access the help file, you have to type into the console window '?' and then the command name. For example, if you want to know more about the command **`sqrt()`**, type the following:
 
 ```{r message=FALSE, warning=FALSE, results='hide',error=TRUE}
 ?sqrt()
