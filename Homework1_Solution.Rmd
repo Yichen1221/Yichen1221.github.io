@@ -248,9 +248,9 @@ use ${\sigma^2} = \sum{(X-E(X))}^2p$ to calculate the variance
 |   3   | 6/36  |  `r fitb(1.0556)`   |   `r fitb(1.1143)`   |            `r fitb(0.1857)`             |
 |   4   | 4/36  |  `r fitb(2.0556)`   |   `r fitb(4.2255)`   |            `r fitb(0.4695)`             |
 |   5   | 2/36  |  `r fitb(3.0556)`   |   `r fitb(9.3367)`   |            `r fitb(0.5187)`             |
-| Total |       |                     |                      | variance ${\sigma^2}$= `r fitb(2.0525)` |
+| Total |       |                     |                      | variance ${\sigma^2}$= `r fitb(2.0524)` |
 
-The population variance ${\sigma^2}$ is `r fitb(2.0525)` and the standard deviation is $\sqrt{{\sigma^2}}=$ `r fitb(1.4327)`
+The population variance ${\sigma^2}$ is `r fitb(2.0524)` and the standard deviation is $\sqrt{{\sigma^2}}=$ `r fitb(1.4326)`
 
 `r hide("Click here to see the solution")`
 
@@ -262,9 +262,9 @@ The population variance ${\sigma^2}$ is `r fitb(2.0525)` and the standard deviat
 |   3   | 6/36  |  $3-1.9444=1.0556$   |   $(1.0556)^2=1.1143$   |            $1.1143\times 6/36=0.1857$             |
 |   4   | 4/36  |  $4-1.9444=2.0556$   |   $(2.0556)^2=4.2255$   |            $4.2255\times 4/36=0.4695$             |
 |   5   | 2/36  |  $5-1.9444=3.0556$  |   $(3.0556)^2=9.3367$   |            $9.3367\times 2/36=0.5187$             |
-| Total |       |                     |                      | variance ${\sigma^2}=2.0525$ |
+| Total |       |                     |                      | variance ${\sigma^2}=2.0524$ |
 
-The population variance ${\sigma^2}$ is $2.0525$ and the standard deviation is $\sqrt{{\sigma^2}}=1.4327$
+The population variance ${\sigma^2}$ is $2.0524$ and the standard deviation is $\sqrt{{\sigma^2}}=1.4326$
 `r unhide()`
 
 <br>
