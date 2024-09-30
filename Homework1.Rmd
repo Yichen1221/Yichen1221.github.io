@@ -111,15 +111,15 @@ Use a table to identify all possible outcomes, see lecture 1 part 2 slides on "D
 
 b\. Find the expected value of $X$ (**Fill in the last blank with four decimal numbers**).
 
-|  $X$  |  $p$  |                            $Xp$                            |
-|:-----:|:-----:|:----------------------------------------------------------:|
-|   0   | 6/36  |                      $0\times 6/36=0$                      |
-|   1   | 10/36 |                   $1\times 10/36=10/36$                    |
-|   2   | 8/36  |                    $2\times 8/36=16/36$                    |
-|   3   | 6/36  |           `r mcq(c(answer = "18/36", "12/36"))`            |
-|   4   | 4/36  |           `r mcq(c("12/36", answer = "16/36"))`            |
-|   5   | 2/36  |           `r mcq(c("12/36", answer = "10/36"))`            |
-| Total |       | $E(X)=\mu$= `r fitb(70)` /`r fitb(36)` ≈ `r fitb(1.9444)`  |
+|  $X$  |  $p$  |                           $Xp$                            |
+|:-----:|:-----:|:---------------------------------------------------------:|
+|   0   | 6/36  |                     $0\times 6/36=0$                      |
+|   1   | 10/36 |                   $1\times 10/36=10/36$                   |
+|   2   | 8/36  |                   $2\times 8/36=16/36$                    |
+|   3   | 6/36  |           `r mcq(c(answer = "18/36", "12/36"))`           |
+|   4   | 4/36  |           `r mcq(c("12/36", answer = "16/36"))`           |
+|   5   | 2/36  |           `r mcq(c("12/36", answer = "10/36"))`           |
+| Total |       | $E(X)=\mu$= `r fitb(70)` /`r fitb(36)` ≈ `r fitb(1.9444)` |
 
 c\. Calculate $E{(X^2)}$ for $X$.
 
@@ -142,16 +142,16 @@ use ${\sigma^2} = \sum{(X-E(X))}^2p$ to calculate the variance
 `r unhide()`
 
 |  $X$  |  $p$  |      $X-E(X)$       |     $(X-E(X))^2$     |              $(X-E(X))^2p$              |
-|:------------:|:---------:|:--------------------:|:----------------------:|:-----------------------------:|
+|:------------:|:------------:|:------------:|:------------:|:---------------:|
 |   0   | 6/36  | $0-1.9444=-1.9444$  | $(-1.9444)^2=3.7087$ |       $3.7087\times 6/36=0.6301$        |
 |   1   | 10/36 | $1-1.9444=-0.9444$  | $(-0.9444)^2=0.8919$ |       $0.8919\times 10/36=0.2477$       |
 |   2   | 8/36  | $(2-1.9444)=0.0556$ | $(0.0556)^2=0.0031$  |       $0.0031\times 8/36=0.0007$        |
 |   3   | 6/36  |  `r fitb(1.0556)`   |   `r fitb(1.1143)`   |            `r fitb(0.1857)`             |
 |   4   | 4/36  |  `r fitb(2.0556)`   |   `r fitb(4.2255)`   |            `r fitb(0.4695)`             |
 |   5   | 2/36  |  `r fitb(3.0556)`   |   `r fitb(9.3367)`   |            `r fitb(0.5187)`             |
-| Total |       |                     |                      | variance ${\sigma^2}$= `r fitb(2.0525)` |
+| Total |       |                     |                      | variance ${\sigma^2}$= `r fitb(2.0524)` |
 
-The population variance ${\sigma^2}$ is `r fitb(2.0525)` and the standard deviation is $\sqrt{{\sigma^2}}=$ `r fitb(1.4327)`
+The population variance ${\sigma^2}$ is `r fitb(2.0524)` and the standard deviation is $\sqrt{{\sigma^2}}=$ `r fitb(1.4326)`
 
 ## Question 5
 
