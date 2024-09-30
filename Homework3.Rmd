@@ -1,0 +1,126 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 3: Interpretation of coefficients and properties of OLS
+
+## Question 1
+
+The output shows the result of regressing the weight of the respondent in 2004, measured in pounds, on his or her height, measured in inches. Provide an interpretation of the coefficients. Does this model provide a good fit?
+
+![](images/regressionoutput1.png){width="600"}
+
+-   Interpretation of the HEIGHT coefficient: Literally the regression implies that, for extra `r fitb(1.0000)` inch(es) of height, an individual tends to weigh an extra `r fitb(5.0737)` pounds (Fill in with four decimal places).
+
+-   Interpretation of the constant: The intercept, which literally suggests that an individual with no height would weigh `r fitb(-177.1703)` pounds (Fill in with four decimal places), has no meaning.
+
+-   The overall fit of the model ($R^2$) is `r fitb(0.2619)` which is rather low (Fill in with four decimal places), as only 26% of the variation in `r mcq(c("height",  answer = "weight"))` can be explained by the variation in `r mcq(c(answer = "height",  "weight"))`.
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()` <br>
+
+## Question 2
+
+Do earnings depend on education? Use the output table below to give an interpretation of the coefficients. Comment also on $R^2$.
+
+![](images/regressionoutput2.png){width="600"}
+
+Of course earnings depend (partly) on education.
+
+-   Interpretation of the education coefficient: Literally the regression implies that, for extra `r fitb(1.0000)` year(s) of education increases hourly earnings by \$`r fitb(1.444)` (Fill in with three decimal places).
+
+-   Interpretation of the constant: literally implies that an individual with no years of schooling would earn \$`r fitb(-2.426)` per hour (Fill in with three decimal places). There are two ways out of this nonsense.
+
+-   One is to say that the fitted relationship can claim to be valid only for the range of values of S in the data set (7–20 in this one) and nothing can be inferred for values outside this range.
+
+-   The other is to say that the relationship may be nonlinear and the negative intercept is an artefact caused by forcing a linear relationship on the observations.
+
+-   The overall fit of the model ($R^2$) is `r fitb(0.1101)` (Fill in with four decimal places), which is rather low, as only 11% of the variation in `r mcq(c("years of schooling",  answer = "earnings"))` can be explained with the variation in `r mcq(c(answer = "years of schooling",  "earnings"))`(Fill in the blanks with four decimal numbers).
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
+
+<br>
+
+## Question 3
+
+What are the 6 main assumptions of OLS? For each assumption explain the implications if it does not hold.
+
+**Assumption 1**: Model is linear in parameters and correctly specified.
+
+If assumption 1 does not hold, `r mcq(c("interpretation of intercept will change", "cannot undertake standard hypothesis tests", "inefficient estimates/ unreliable results", "betas cannot be estimated", answer = "poor fit of model"))`
+
+**Assumption 2**: There is some variation in the X variable.
+
+If assumption 2 does not hold, `r mcq(c("interpretation of intercept will change", "cannot undertake standard hypothesis tests", "inefficient estimates/ unreliable results", answer = "betas cannot be estimated", "poor fit of model"))`
+
+**Assumption 3**: Disturbance term has zero expectation.
+
+If assumption 3 does not hold, `r mcq(c(answer = "interpretation of intercept will change", "cannot undertake standard hypothesis tests", "inefficient estimates/ unreliable results", "betas cannot be estimated", "poor fit of model"))`
+
+**Assumption 4**: Disturbance term is homoscedastic.
+
+If assumption 4 does not hold, `r mcq(c("interpretation of intercept will change", "cannot undertake standard hypothesis tests", answer = "inefficient estimates/ unreliable results", "betas cannot be estimated", "poor fit of model"))`
+
+**Assumption 5**: Values of disturbance term have independent distributions.
+
+If assumption 5 does not hold, `r mcq(c("interpretation of intercept will change", "cannot undertake standard hypothesis tests", answer = "inefficient estimates/ unreliable results", "betas cannot be estimated", "poor fit of model"))`
+
+**Assumption 6**: The disturbance term has a normal distribution.
+
+If assumption 6 does not hold, `r mcq(c("interpretation of intercept will change", answer = "cannot undertake standard hypothesis tests", "inefficient estimates/ unreliable results", "betas cannot be estimated", "poor fit of model"))`
+
+## Question 4
+
+The OLS estimator is BLUE. Explain what BLUE stands for and why OLS is referred to BLUE.
+
+BLUE stands for `r mcq(c("Basic Linear Uniform Estimation", answer = "Best Linear Unbiased Estimator", "Best Logarithmic Unbiased Estimation", "Binary Linear Unbiased Estimate"))`
+
+The Gauss-Markov Theorem states that provided the assumptions hold, OLS estimators will have the `r mcq(c(answer = "lowest",  "highest", "mean"))` variance amongst all possible estimators.
+
+An estimator with low variance means it comes from a sampling distribution where most of the values are concentrated around the `r mcq(c(answer = "true",  "false", "correct"))` but `r mcq(c("known", answer = "unknown",   "uncertain"))` population value of the characteristic it is estimating.
+
+## Question 5
+
+Referring to the equation below, explain what factors determine the variance of $\hat{\beta}_{2}$. Furthermore, use this formula to explain why OLS will be the most efficient estimator.
+
+```{=tex}
+\begin{equation*}
+    \sigma^2_{\hat{\beta}_{2}}=\frac{\sigma^2_{u_{i}}}{nMSD(X)}
+\end{equation*}
+```
+Three factors will determine variance of $\hat{\beta}_{2}$:
+
+1.  Number of observations ($n$): The `r mcq(c("smaller", answer = "larger"))` $n$, the `r mcq(c(answer = "smaller", "larger"))` $\sigma^2_{\hat{\beta}_{2}}$
+
+2.  Variance of residuals: Larger residuals `r mcq(c("increase", answer = "reduce"))` precision of estimates
+
+3.  Larger MSD($X$) leads to smaller $\sigma^2_{\hat{\beta}_{2}}$: Low variations in MSD($X$) means low variations in $X_{i}\rightarrow$ more variations from $u_{i}\rightarrow$ higher variance (lower precision) in $\sigma^2_{\hat{\beta}_{2}}$
+
+OLS is the estimator that  `r mcq(c("maximises", answer = "minimises",   "keep"))` the size of the residuals. Therefore it will have a smaller $\sigma^2_{\hat{\beta}_{2}}$ than any other estimator.
+
+
+`r hide("I need a hint")`
+
+Refer to the Lecture 3, Part 2 slides for assistance.
+
+`r unhide()`
+
+
