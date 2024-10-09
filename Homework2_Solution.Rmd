@@ -129,7 +129,7 @@ Use figure in lecture 2 part 2 slides to give labels.
 
 `r hide("Click here to see the solution")`
 
-![](images/SRFPRFlabel.png){width="450"}
+![](images/SRFPRFlabel-01.png){width="400"}
 
 `r unhide()`
 
@@ -143,7 +143,7 @@ The table below shows the average annual percentage rates of growth of employmen
 
 ![](images/regressionoutput.png){width="550"}
 
--   Interpretation of the GDP coefficient: Literally the regression implies that a `r fitb(1)` percent increase in the growth of GDP generates a `r fitb(0.2379)` percent increase in the rate of growth of employment (Fill in the blanks with four decimal numbers). 
+-   Interpretation of the GDP coefficient: Literally the regression implies that a `r fitb(1)` percent increase in the growth of GDP generates a `r fitb(0.2379)` percent increase in the rate of growth of employment (Fill in the blanks with four decimal numbers).
 
 -   Interpretation of the intercept: The intercept suggests that, if GDP is static, employment will still grow at a rate of `r fitb(0.4919)` percent per year (Fill in the blanks with four decimal numbers).
 
