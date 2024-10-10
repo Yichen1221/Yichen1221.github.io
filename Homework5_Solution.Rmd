@@ -1,0 +1,428 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 5: Multiple Regression Model I
+
+## Question 1
+
+When we interpret the coefficients of a multiple regression model, we always add “holding everything else constant”. Using an example, explain what it means.
+
+Holding all other variables constant: Other X variables do not change when X variable of interest is changing. If they all change at the same time, it would be difficult to assess the effect of a change in the X variable of interest on Y. A change in one X variable could increase Y, but a change in another X variable could decrease Y and so on. This would not be informative.
+
+Example:
+
+\begin{equation*}
+    \widehat{officers}_{i}=\hat{\beta}_{1}+\hat{\beta}_{2} crimes_{i}+\hat{\beta}_{3} population_{i}+\hat{\beta}_{4} pcinc_{i}
+\end{equation*}
+
+A one unit increase in `r mcq(c("number of police officers", answer = "crimes"))` would increase the `r mcq(c(answer = "number of police officers", "crimes"))` by $\hat{\beta}_{2}$ keeping everything else constant, i.e. `r mcq(c("number of police officers", "crimes", answer = "population", answer = "per capita income"))` and `r mcq(c("number of police officers", "crimes",  answer = "population", answer = "per capita income"))`.
+
+`r hide("Click here to see the solution")` 
+A one unit increase in crimes would increase the number of police officers by $\hat{\beta}_{2}$ keeping everything else constant, i.e. population and per capita income.
+`r unhide()`
+<br>
+
+## Question 2
+
+Data on 935 individuals was collected to identify what factors can explain the variation in wage data. Firstly, a simple regression is run regressing wages (monthly earnings in USD) on years of education. Secondly, a multiple regression is run regressing wages on years of education and years of work experience.
+
+![](images/simpleregression-01.png){width="600"}
+
+![](images/multipleregression-01.png){width="600"}
+
+a.  Interpret the intercepts and coefficients of both regressions and make reference to their statistical significance.
+
+-   Regression 1 - Simple regression model:
+
+Intercept: estimate coefficient = `r fitb(146.952)` (Fill in with three decimal places).
+
+A person without education would have on average a monthly income of 146.952USD. The $p-value=$`r fitb(0.0589)` (Fill in with four decimal places) $>5\%$ shows that we `r mcq(c(answer = "cannot",  "can"))`reject the null hypothesis at the 5% significance level, therefore the intercept is statistically `r mcq(c(answer = "insignificant",  "significant"))`.
+
+`r hide("Click here to see the solution")` 
+Intercept: estimate coefficient = 146.952
+
+A person without education would have on average a monthly income of 146.952USD. The $p-value=0.0589 >5\%$ shows that we cannot reject the null hypothesis at the 5% significance level, therefore the intercept is statistically insignificant.
+`r unhide()`
+
+<br>
+
+wages2\$educ: estimate coefficient = `r fitb(60.214)` (Fill in with three decimal places).
+
+One more year of education will increase monthly earning on average by 60.214USD. The $p-value <2e-16 < 1\%$. This value is highly statistically `r mcq(c("insignificant", answer = "significant"))`. We `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 1% significance level.
+
+`r hide("Click here to see the solution")`
+wages2\$educ: estimate coefficient = 60.214
+
+One more year of education will increase monthly earning on average by 60.214USD. The $p-value <2e-16 < 1\%$. This value is highly statistically significant. We can reject the null hypothesis at the 1% significance level.
+`r unhide()`
+
+<br>
+
+-   Regression 2 - Multiple regression model:
+
+Intercept: estimate coefficient = `r fitb(-272.528)` (Fill in with three decimal places).
+
+A person without education would have on average a `r mcq(c("positive", answer = "negative"))`monthly income of 272.528USD. The $p-value=$`r fitb(0.0112)` (Fill in with four decimal places) $<5\%$ shows that we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level, therefore the intercept is statistically `r mcq(c("insignificant", answer = "significant"))`. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
+
+`r hide("Click here to see the solution")` 
+Intercept: estimate coefficient = -272.528.
+
+A person without education would have on average a negative monthly income of 272.528USD. The $p-value=0.0112 <5\%$ shows that we can reject the null hypothesis at the 5% significance level, therefore the intercept is statistically significant. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
+
+`r unhide()`
+
+<br>
+
+wages2\$educ: estimate coefficient = `r fitb(76.216)` (Fill in with three decimal places).
+
+One more year of `r mcq(c("monthly earning", answer = "education", "work experience"))` will increase `r mcq(c(answer = "monthly earning", "education", "work experience"))` on average by 76.216USD, ceteris paribus. The $p-value <2e-16 < 1\%$. This value is highly statistically significant. We can reject the null hypothesis at the 1% significance level.
+
+`r hide("Click here to see the solution")` 
+wages2\$educ: estimate coefficient = 76.216.
+
+One more year of education will increase monthly earning on average by 76.216USD, ceteris paribus. The $p-value <2e-16 < 1\%$. This value is highly statistically significant. We can reject the null hypothesis at the 1% significance level.
+`r unhide()`
+
+<br>
+
+wages2\$exper: estimate coefficient = `r fitb(17.638)` (Fill in with three decimal places).
+
+One more year of `r mcq(c("monthly earning", "education", answer = "work experience"))`will increase `r mcq(c(answer = "monthly earning", "education", "work experience"))` on average by 17.638USD, ceteris paribus. The $p-value=3.18e-08< 1\%$. This value is highly statistically significant. We can reject the null hypothesis at the 1% significance level.
+
+`r hide("Click here to see the solution")` 
+wages2\$exper: estimate coefficient = 17.638.
+
+One more year of work experience will increase monthly earning on average by 17.638USD, ceteris paribus. The $p-value=3.18e-08< 1\%$. This value is highly statistically significant. We can reject the null hypothesis at the 1% significance level.
+`r unhide()`
+
+<br> <br>
+
+b.  Explain why the omission of the work experience variable in the simple regression model led to an underestimation of the impact of education on wages.
+
+Work experience and education both have `r mcq(c("no", answer = "positive", "negative"))` impact on wages. However, education and work experience are `r mcq(c("not", "positively", answer = "negatively"))` correlated, i.e. individuals with more education have on average less work experience. By not controlling for work experience (not adding work experience to our model), the coefficient of education would also capture the `r mcq(c("monthly earning", "education", answer = "work experience"))` effect, therefore the impact of education would be underestimated.
+
+`r hide("Click here to see the solution")` 
+Work experience and education both have positive impact on wages. However, education and work experience are negatively correlated, i.e. individuals with more education have on average less work experience. By not controlling for work experience (not adding work experience to our model), the coefficient of education would also capture the work experience effect, therefore the impact of education would be underestimated.
+`r unhide()`
+<br> <br>
+
+c.  Using the multiple regression model, predict the wage of someone who has 12 years of education and 1 year of work experience.
+
+Wage of someone who has 12 years of education and 1 year of work experience is `r fitb(659.702)` (Fill in with three decimal places).
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
+
+`r hide("Click here to see the solution")` 
+Wage of someone who has 12 years of education and 1 year of work experience is: 
+\begin{equation*}
+    \widehat{wage}=-272.528+76.216\times12+17.638\times1=659.702
+\end{equation*}
+`r unhide()`
+
+<br>
+
+## Question 3
+
+The output below is the result of fitting an educational attainment function, regressing $S$ on $ASVABC$, a measure of cognitive ability, $SM$, and $SF$, years of schooling (highest grade completed) of the respondent’s mother and father, respectively.
+
+![](images/regressionoutput1-01.png){width="600"}
+
+a.  Give an interpretation of the regression coefficients.
+
+Intercept: estimate coefficient = `r fitb(10.59674)` (Fill in with five decimal places).
+
+If all covariates were zero (zero ability score, no education of father and mother), the average years of education would be 10.59674 years.
+
+`r hide("Click here to see the solution")` 
+Intercept: estimate coefficient = 10.59674.
+`r unhide()`
+<br>
+
+$ASVABC$: estimate coefficient = 1.24253.
+
+A one unit higher `r mcq(c("years of education", answer = "cognitive ability score", "education of the mother", "education of the father"))` will increase `r mcq(c(answer = "years of education", "cognitive ability score", "education of the mother", "education of the father"))` on average by 1.24253 years, ceteris paribus.
+
+`r hide("Click here to see the solution")`
+A one unit higher cognitive ability score  will increase years of education on average by 1.24253 years, ceteris paribus.
+`r unhide()`
+<br>
+
+$SM$: estimate coefficient = 0.09135
+
+A year more of `r mcq(c("years of education", "cognitive ability score", answer = "education of the mother", "education of the father"))` will lead on average to a 0.09135 years increase of`r mcq(c(answer = "years of education", "cognitive ability score", "education of the mother", "education of the father"))`, ceteris paribus.
+
+`r hide("Click here to see the solution")`
+A year more of education of the mother will lead on average to a 0.09135 years increase of years of education, ceteris paribus.
+`r unhide()`
+
+<br>
+
+$SF$: estimate coefficient = 0.20289
+
+A year more of education of the father will lead on average to a `r fitb(0.20289)` (Fill in with five decimal places) years increase of education, ceteris paribus.
+
+`r hide("Click here to see the solution")`
+A year more of education of the father will lead on average to a 0.20289 years increase of education, ceteris paribus.
+`r unhide()`
+<br>
+
+b.  Undertake hypothesis tests to show whether the coefficients are statistically significant. The critical $t-value = 1.965$ (5% significance level).
+
+To test whether any of the coefficients provided above are statistically significant, we need to follow these steps:
+
+Step 1. `r mcq(c("Set the decision rule", "Select the significance level", answer = "State the null and alternative hypotheses", "Select and calculate the test statistics", "Make statistical decisions"))`
+
+Step 2. `r mcq(c("Set the decision rule", answer = "Select the significance level", "State the null and alternative hypotheses", "Select and calculate the test statistics", "Make statistical decisions"))`
+
+Step 3. `r mcq(c("Set the decision rule", "Select the significance level", "State the null and alternative hypotheses", answer = "Select and calculate the test statistics", "Make statistical decisions"))`
+
+Step 4. `r mcq(c(answer = "Set the decision rule", "Select the significance level", "State the null and alternative hypotheses", "Select and calculate the test statistics", "Make statistical decisions"))`
+
+Step 5. `r mcq(c("Set the decision rule", "Select the significance level", "State the null and alternative hypotheses", "Select and calculate the test statistics", answer = "Make statistical decisions"))`
+
+`r hide("Click here to see the solution")`
+Step 1. State the null and alternative hypotheses
+
+Step 2. Select the significance level
+
+Step 3. Select and calculate the test statistics
+
+Step 4. Set the decision rule
+
+Step 5. Make statistical decisions
+`r unhide()`
+<br>
+
+-   Hypothesis test for intercept
+
+Step 1. $H_0:\beta_{1}=0; H_1:\beta_{1}\neq 0$
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate t-statistic: $\hat{\beta}_{1}=10.59674$, s.e.$(\hat{\beta}_{1})=0.61428$
+
+$t=\frac{\hat{\beta}_{1}-\beta_{1}^0}{s.e.(\hat{\beta}_{1})}=\frac{10.59674-0}{0.61428} \approx 17.25$
+
+Step 4. Compare t-statistic with critical t -value: $17.25 > 1.965$
+
+Step 5. Conclusion: We can reject the null hypothesis at the 5% significance level. The intercept is statistically significant.
+
+<br>
+
+-   Hypothesis test for $ASVABC$
+
+Step 1. $H_0:\beta_{2}=0; H_1:\beta_{2}\neq 0$
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate t-statistic: $\hat{\beta}_{2}=1.24253$, s.e.$(\hat{\beta}_{2})=$`r fitb(0.12359)` (Fill in with five decimal places)
+
+$t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})}\approx$ `r fitb(10.05)` (Fill in with two decimal places)
+
+Step 4. Compare t-statistic with critical t -value: $10.05 > 1.965$
+
+Step 5. Conclusion: We can reject the null hypothesis at the 5% significance level. The intercept is statistically significant.
+
+`r hide("Click here to see the solution")`
+Step 3. Calculate t-statistic: $\hat{\beta}_{2}=1.24253$, s.e.$(\hat{\beta}_{2})=0.12359$
+
+\begin{equation*}
+    t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})}=\frac{1.24253-0}{0.12359} \approx 10.05
+\end{equation*}
+
+`r unhide()`
+
+<br>
+
+-   Hypothesis test for $SM$
+
+Step 1. $H_0:\beta_{3}=$ `r fitb(0)`; $H_1:\beta_{3}\neq$ `r fitb(0)`
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate t-statistic:
+
+$\hat{\beta}_{3}=0.09135$, s.e.$(\hat{\beta}_{3})=$`r fitb(0.04593)` (Fill in with five decimal places)
+
+$t=\frac{\hat{\beta}_{3}-\beta_{3}^0}{s.e.(\hat{\beta}_{3})}=\frac{0.09135-0}{0.04593} \approx 1.98$
+
+Step 4. Compare t-statistic with critical t -value: $1.98 > 1.965$
+
+Step 5. Conclusion: We can reject the null hypothesis at the 5% significance level. The intercept is statistically significant.
+
+`r hide("Click here to see the solution")`
+Step 1. $H_0:\beta_{3}=0$ ; $H_1:\beta_{3}\neq 0$
+
+Step 3. Calculate t-statistic:
+
+$\hat{\beta}_{3}=0.09135$, s.e.$(\hat{\beta}_{3})= 0.04593$
+`r unhide()`
+
+<br>
+
+-   Hypothesis test for $SF$
+
+Step 1. $H_0:\beta_{4}=$ `r fitb(0)`; $H_1:\beta_{4}\neq$ `r fitb(0)`
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate t-statistic:
+
+$\hat{\beta}_{4}=0.20289$, s.e.$(\hat{\beta}_{4})=$`r fitb(0.04251)` (Fill in with five decimal places)
+
+$t=\frac{\hat{\beta}_{4}-\beta_{4}^0}{s.e.(\hat{\beta}_{4})}\approx$`r fitb(4.77)` (Fill in with two decimal places)
+
+Step 4. Compare t-statistic with critical t -value: 4.77 > `r fitb(1.965)` (Fill in with three decimal places)
+
+Step 5. Conclusion: We `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level. The intercept is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+`r hide("Click here to see the solution")`
+Step 1. $H_0:\beta_{4}=0$; $H_1:\beta_{4}\neq 0$
+
+Step 3. Calculate t-statistic:
+
+$\hat{\beta}_{4}=0.20289$, s.e.$(\hat{\beta}_{4})=0.04251$
+
+\begin{equation*}
+    t=\frac{\hat{\beta}_{4}-\beta_{4}^0}{s.e.(\hat{\beta}_{4})}=\frac{0.20289-0}{0.04251} \approx 4.77
+\end{equation*}
+
+Step 4. Compare t-statistic with critical t -value: 4.77 > 1.965
+
+Step 5. Conclusion: We can reject the null hypothesis at the 5% significance level. The intercept is statistically significant.
+`r unhide()`
+
+<br>
+
+c.  Is the $R^2$ is statistically significant? The critical F value at the 5% significance level is 2.62. Interpret your result.
+
+Step 1. Write hypothesis test for $R^2$: $H_0:R^2=0; H_1:R^2 \neq 0$
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate F-statistic:
+
+You can use $R^2$ to calculate the F-statistic (or find it in the output table).
+
+$R^2=$ `r fitb(0.329)` (Fill in with three decimal places)
+
+$k=$`r fitb(4)` (Fill in with integer)
+
+$n=$`r fitb(500)` (Fill in with integer)
+
+$F(3,496)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)} \approx$`r fitb(81.06)` (Fill in with two decimal places)
+
+Step 4. Compare F test statistic with the critical F-value: 81.06 \>`r fitb(2.62)` (Fill in with two decimal places)
+
+Step 5. The F statistic is greater than the critical F value, therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis. The estimated model is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+`r hide("Click here to see the solution")`
+$R^2=0.329$ 
+
+$k=4$
+
+$n=500$
+
+\begin{equation*}
+    F(3,496)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)}=\frac{0.329/(4-1)}{(1-0.329)/496} \approx 81.06
+\end{equation*}
+
+Step 4. Compare F test statistic with the critical F-value: 81.06 > 2.62
+
+Step 5. The F statistic is greater than the critical F value, therefore we can reject the null hypothesis. The estimated model is statistically significant.
+
+`r unhide()`
+<br>
+
+d.  Calculate the 95% confidence interval for each coefficient.
+
+The formula for calculating the confidence interval for the intercept is \begin{equation*}
+    \hat{\beta}_{1}-s.e.(\hat{\beta}_{1}) \times t_{crit} \leq \beta_{1} \leq  \hat{\beta}_{1}+s.e.(\hat{\beta}_{1}) \times t_{crit}
+\end{equation*}
+
+The regression output shows that the point estimate $\beta_{1}$ is 10.59674 and its standard error is 0.61428:
+
+```{=tex}
+\begin{equation*}
+    10.59674-0.61428 \times 1.965 \leq \beta_{1} \leq 10.59674+0.61428 \times 1.965
+\end{equation*}
+```
+The 95% confidence interval for intercept is \begin{equation*}
+    9.3896 \leq \beta_{1} \leq 11.8038
+\end{equation*}
+
+<br>
+
+Following the same logic, you can calculate the 95% confidence interval for $ASVABC$, $SM$ and $SF$ (Fill in the table below with four decimal places):
+
+|                                   |       2.5%       |      97.5%       |
+|:---------------------------------:|:----------------:|:----------------:|
+| 95% confidence interval for intercept |      9.3896      |     11.8038      |
+| 95% confidence interval for $ASVABC$  | `r fitb(0.9997)` | `r fitb(1.4853)` |
+|   95% confidence interval for $SM$    | `r fitb(0.0011)` | `r fitb(0.1815)` |
+|   95% confidence interval for $SF$    | `r fitb(0.1193)` | `r fitb(0.2864)` |
+
+`r hide("Click here to see the solution")`
+|                                   |       2.5%       |      97.5%       |
+|:---------------------------------:|:----------------:|:----------------:|
+| 95% confidence interval for intercept |      9.3896      |     11.8038      |
+| 95% confidence interval for $ASVABC$  | 0.9997 | 1.4853 |
+|   95% confidence interval for $SM$    | 0.0011 | 0.1815 |
+|   95% confidence interval for $SF$    | 0.1193 | 0.2864 |
+`r unhide()`
+
+<br>
+
+## Question 4
+
+Explain the differences between $R^2$ and adjusted $R^2$ and calculate adjusted $R^2$ using the information from question 3. The formula of adjusted $R^2$ is
+
+```{=tex}
+\begin{equation*}
+    \bar{R^2}=R^2-\frac{k-1}{n-k}(1-R^2)
+\end{equation*}
+```
+$R^2$ is a measure of goodness of fit, which measures `r mcq(c("The correlation between the dependent variable and one of the independent variables", "The slope of the regression line", answer = "The percentage of the total variation in the dependent variable that is explained by the independent variables in the regression model", "The sum of squared residuals from the regression model"))`
+
+However, the `r mcq(c("less", answer = "more"))` $X$ variables are on the right-hand side of a regression model the `r mcq(c("lower", answer = "higher"))` $R^2$ usually tends to be. Adding random variables could improve the model fit by chance, therefore a direct comparison of models with a different number of variables is misleading.
+
+Adjusted $R^2$ tries to mitigate the problem by introducing a negative adjustment factor for adding additional covariates. This allows us to compare “apples with apples”.
+
+In question 3, $R^2=0.329$
+
+$k=$`r fitb(4)` (Fill in with integer)
+
+$n=$`r fitb(500)` (Fill in with integer)
+
+Adjusted $R^2$ is: $\bar{R^2}=R^2-\frac{k-1}{n-k}(1-R^2)=$`r fitb(0.3249)` (Fill in with four decimal places)
+
+`r hide("Click here to see the solution")`
+$R^2$ is a measure of goodness of fit, which measures the percentage of the total variation in the dependent variable that is explained by the independent variables in the regression model.
+
+However, the more $X$ variables are on the right-hand side of a regression model the higher $R^2$ usually tends to be. Adding random variables could improve the model fit by chance, therefore a direct comparison of models with a different number of variables is misleading.
+
+$k=4$
+
+$n=500$
+
+\begin{equation*}
+    \bar{R^2}=R^2-\frac{k-1}{n-k}(1-R^2)=0.329-\frac{4-1}{496}(1-0.329)=0.3249
+\end{equation*}
+
+
