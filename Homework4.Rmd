@@ -1,0 +1,262 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 4: Hypothesis testing
+
+## Question 1
+
+A researcher hypothesises that years of schooling, $S$, may be related to the number of siblings (brothers and sisters), $SIBLINGS$, according to the relationship
+
+```{=tex}
+\begin{equation*}
+    S=\beta_{1}+\beta_{2}SIBLINGS+u
+\end{equation*}
+```
+She is prepared to test the null hypothesis $H_0:\beta_{2}=0$ against the alternative hypothesis $H_1:\beta_{2}\neq 0$ at the 5% and 1% levels. She has a sample of 60 observations.
+
+The critical t values at the 5% and 1% significance level are 2.00 and 2.66 respectively. Undertake hypothesis tests for the following scenarios:
+
+1.  $\hat{\beta}_{2}=-0.20$, s.e.$(\hat{\beta}_{2})=0.07$
+
+2.  $\hat{\beta}_{2}=-0.12$, s.e.$(\hat{\beta}_{2})=0.07$
+
+3.  $\hat{\beta}_{2}=0.06$, s.e.$(\hat{\beta}_{2})=0.07$
+
+4.  $\hat{\beta}_{2}=0.20$, s.e.$(\hat{\beta}_{2})=0.07$
+
+`r hide("I need a hint")`
+
+To test whether any of the coefficients provided above are statistically significant, we need to follow these steps:
+
+1.  State the null and alternative hypotheses
+
+2.  Select the significance level
+
+3.  Select and calculate the test statistics
+
+4.  Set the decision rule
+
+5.  Make statistical decisions
+
+`r unhide()`
+
+Now we look at this question.
+
+Step 1. We know the null hypothesis is $H_0:\beta_{2}$=`r fitb(0)` and alternative hypothesis is $H_1:\beta_{2}\neq$ `r fitb(0)`.
+
+Step 2. The significance levels are `r fitb(5)` % and `r fitb(1)` %.
+
+Step 3: calculate the t-values, which measure how many standard errors is our coefficient away from zero.
+
+```{=tex}
+\begin{equation*}
+    t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})}
+\end{equation*}
+```
+Step 4: The decision rule is: If the absolute value of t-value is `r mcq(c("smaller",  answer = "greater"))` than the critical value, then we `r mcq(c("cannot",  answer = "can"))` reject the null Hypothesis and our coefficient is statistically significant.
+
+Please note:
+
+-   Our test is two-tailed, so the non-rejection area has a left boundary of -2.00 at the 5% significance level and -2.66 at the 1% significance level. The right boundary is +2.00 for 5% and +2.66 for 1% significance level.
+
+    ![](images/5reject.png){width="200"}
+
+    ![](images/1reject.png){width="200"}
+
+-   Looking at the critical values shows that to reject the null Hypothesis at a lower significance level, the t-value has to be greater than for a higher significance level! Therefore the non-rejection area at the 1% significance level is wider than at the 5% significance level.
+
+-   If you can reject the $H_0$ at the 1% significance level, you can always reject it also at the 5% significance level, but if you can reject it at the 5% level does not mean that you can also reject it at the 1% significance level!
+
+-   To get full points in the coursework, ensure that you complete the 5 steps of Hypothesis testing.
+
+Step 5: Make decisions
+
+<br> <br>
+
+Now we calculate the t-values in step 3 and undertake hypothesis tests for the following scenarios:
+
+1.  $\hat{\beta}_{2}=-0.20$, s.e.$(\hat{\beta}_{2})=0.07$
+
+Null hypothesis: $H_0:\beta_{2} = 0$; Alternative hypothesis: $H_1:\beta_{2}\neq 0$
+
+$t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})} \approx$ `r fitb(-2.857)` (Fill in with three decimal places)
+
+At the 1% level, the left critical value is `r fitb(-2.66)` (Fill in with two decimal places), so t-value falls into the left `r mcq(c(answer = "reject", "non-rejection"))` area, therefore we `r mcq(c("cannot reject",  answer = "reject"))` $H_0$ at the 1% level.
+
+Because we `r mcq(c("cannot reject",  answer = "reject"))` it at the 1% level, we already know that we can also `r mcq(c("cannot reject",  answer = "reject"))` it at the 5% level.
+
+<br>
+
+2.  $\hat{\beta}_{2}=-0.12$, s.e.$(\hat{\beta}_{2})=0.07$
+
+Null hypothesis: $H_0:\beta_{2} = 0$; Alternative hypothesis: $H_1:\beta_{2}\neq 0$
+
+$t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})} \approx$ `r fitb(-1.714)` (Fill in with three decimal places)
+
+At the 5% level, this t-value falls within `r mcq(c("reject", answer = "non-rejection"))` area, therefore we `r mcq(c(answer = "cannot reject",  "reject"))` $H_0$ at the 5 % level.
+
+As we `r mcq(c(answer = "cannot reject",  "reject"))` $H_0$ at the 5% level, we already know that we also cannot reject it at the 1% level!
+
+<br>
+
+3.  $\hat{\beta}_{2}=0.06$, s.e.$(\hat{\beta}_{2})=0.07$
+
+Null hypothesis: $H_0:\beta_{2} = 0$; Alternative hypothesis: $H_1:\beta_{2}\neq 0$
+
+$t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})} \approx$ `r fitb(0.857)` (Fill in with three decimal places)
+
+At the 5% level, t-value falls within `r mcq(c("reject", answer = "non-rejection"))` area, therefore we `r mcq(c(answer = "cannot reject",  "reject"))` $H_0$ at the 5% level.
+
+As we `r mcq(c(answer = "cannot reject",  "reject"))` $H_0$ at the 5% level, we already know that we also cannot reject it at the 1% level!
+
+<br>
+
+4.  $\hat{\beta}_{2}=0.20$, s.e.$(\hat{\beta}_{2})=0.07$
+
+Null hypothesis: $H_0:\beta_{2} = 0$; Alternative hypothesis: $H_1:\beta_{2}\neq 0$
+
+$t=\frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})} \approx$ `r fitb(2.857)` (Fill in with three decimal places)
+
+At the 1% level,the right critical value is `r fitb(2.66)` (Fill in with two decimal places), so t-value falls within `r mcq(c(answer = "reject",  "non-rejection"))` area, therefore we `r mcq(c("cannot reject", answer = "reject"))` $H_0$ at the 1% level.
+
+Because we `r mcq(c("cannot reject",  answer = "reject"))` it at the 1% level, we already know that we can also `r mcq(c("cannot reject",  answer = "reject"))` it at the 5% level.
+
+<br>
+
+## Question 2
+
+The number of cigarettes smoked per day is regressed on the price of cigarettes per pack in USD. Sample size $n=807$.
+
+![](images/regressionoutput3.png){width="600"}
+
+1.  Interpret the intercept and the coefficient of the independent variable.
+
+-   Interpretation of the price of cigarettes coefficient: `r fitb(1.00000)` USD price increase would decrease the number of cigarettes smoked by `r fitb(0.03297)` (Fill in with five decimal places).
+
+-   Interpretation of the intercept: If the cigarette price per pack was `r fitb(0.00000)`, then individuals would smoke on average `r fitb(10.67457)` (Fill in with five decimal places) cigarettes.
+
+<br>
+
+2.  Write down the test hypotheses for testing the significance of the intercept and coefficient.
+
+$H_0:\beta_{1}=$`r fitb(0)`, $H_1:\beta_{1}\neq$ `r fitb(0)`
+
+$H_0:\beta_{2}=$`r fitb(0)`, $H_1:\beta_{2}\neq$ `r fitb(0)`
+
+<br>
+
+3.  Calculate t-statistics for the intercept and the coefficient of cigarette prices. The critical t-value at the 5% significance level is 1.96.
+
+-   Intercept: $t-value = \frac{\hat{\beta}_{1}-\beta_{1}^0}{s.e.(\hat{\beta}_{1})}=\approx$ `r fitb(1.729)`(Fill in with three decimal places) \< $t_{crit,5\%}= 1.96$
+
+We cannot reject $H_0$. The intercept is statistically `r mcq(c(answer = "insignificant",  "significant"))`.
+
+-   Cigprice: $t-value = \frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})} \approx$ `r fitb(-0.323)`(Fill in with three decimal places) \> $t_{crit,5\%}=-1.96$
+
+We cannot reject $H_0$. The coefficient of cigarette price is statistically `r mcq(c(answer = "insignificant",  "significant"))`.
+
+<br>
+
+## Question 3
+
+Calculate the 95% confidence interval for the intercept as well as the coefficient of cigarette prices using the R output in Question 2.
+
+![](images/regressionoutput1.png){width="600"}
+
+The formula for calculating the confidence interval for the intercept is \begin{equation*}
+    \hat{\beta}_{1}-s.e.(\hat{\beta}_{1}) \times t_{crit,5\%} \leq \beta_{1} \leq  \hat{\beta}_{1}+s.e.(\hat{\beta}_{1}) \times t_{crit,5\%}
+\end{equation*}
+
+The regression output shows that the point estimate $\hat{\beta}_{1}$ is `r fitb(10.67457)` (Fill in with five decimal places) and its standard error $s.e.(\hat{\beta}_{1})$ is `r fitb(6.17296)` (Fill in with five decimal places).
+
+The formula for calculating the confidence interval for the cigarette coefficient is
+
+```{=tex}
+\begin{equation*}
+    \hat{\beta}_{2}-s.e.(\hat{\beta}_{2}) \times t_{crit,5\%} \leq \beta_{2} \leq  \hat{\beta}_{2}+s.e.(\hat{\beta}_{2}) \times t_{crit,5\%}
+\end{equation*}
+```
+The regression output shows that the point estimate $\hat{\beta_{2}}$ is `r fitb(-0.03297)` (Fill in with five decimal places) and its standard error $s.e.(\hat{\beta}_{2})$ is `r fitb(0.10206)` (Fill in with five decimal places).
+
+<br>
+
+## Question 4
+
+Calculate the F statistic for the regression undertaken in Question 2 using $ESS$ and $RSS$ presented in the R anova output table above. Check that the F statistic derived from $R^2$ is the same. Perform the F test, whereby the critical F-value at the 5% significance level is approximately 3.8415.
+
+The formula for the F-statistics are \begin{equation*}
+    F(1,805)=\frac{ESS/(k-1)}{RSS/(n-k)}
+\end{equation*}
+
+or
+
+```{=tex}
+\begin{equation*}
+    F(1,805)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)}
+\end{equation*}
+```
+
+The regression output is
+
+![](images/regressionoutput1-01.png){width="600"}
+
+and
+
+![](images/variancetable.png){width="400"}
+
+
+
+
+
+We follow hypothesis testing five steps:
+
+Step 1: the null hypothesis is $H_0:R^2=0$ and alternative hypothesis is $H_1:R^2\neq 0$.
+
+Step 2: the significance level is 5%.
+
+Step 3: calculate the F-values using either formula
+
+$ESS=$`r fitb(20)` (Fill in with integer)
+
+$RSS=$`r fitb(151734)` (Fill in with integer)
+
+$k=$`r fitb(2)` (Fill in with integer)
+
+$n=$`r fitb(807)` (Fill in with integer)
+
+$R^2=$`r fitb(0.0001296)` (Fill in with seven decimal places)
+
+$F(1,805)=\frac{ESS/(k-1)}{RSS/(n-k)} \approx$ `r fitb(0.106)` (Fill in with three decimal places)
+
+$F(1,805)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)} \approx$ `r fitb(0.104)` (Fill in with three decimal places)
+
+Step 4: The decision rule is: If the F-value is greater than the $F_{crit,5\%}$ then we can reject the null Hypothesis, so our model is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+```{=tex}
+\begin{equation*}
+    F(1,805) \approx 0.104 < F_{crit,5\%}=3.8415
+\end{equation*}
+```
+Step 5: Make decisions
+
+Therefore we cannot reject the $H_0$ and our model is statistically `r mcq(c(answer = "insignificant",  "significant"))`.
+
+<br>
+
+## Question 5
+
+The number of cigarettes per day is regressed on the age of participants. Use the R output tables below to answer Questions 2 – 4 again.
+
+![](images/regressionoutput2.png){width="600"}
