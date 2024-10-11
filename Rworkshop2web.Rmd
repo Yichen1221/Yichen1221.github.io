@@ -212,7 +212,7 @@ XXXX(officersfit)
 
 # Further Exercise
 
-If you are confident with all the exercises we have completed based on the crime dataset, download the data set called EAWE21.dta from the module page on Blackboard and save it. The dataset is a subset of the Educational Attainment and Wage Equations dataset used in Dougherty (2016) available from <https://global.oup.com/uk/orc/busecon/economics/dougherty5e/student/datasets/eawe/> For this exercise we are interested in two variables:
+If you are confident with all the exercises we have completed based on the crime dataset, download the data set called EAWE21.Rdata from the module page on Blackboard and save it. The dataset is a subset of the Educational Attainment and Wage Equations dataset used in Dougherty (2016) available from <https://global.oup.com/uk/orc/busecon/economics/dougherty5e/student/datasets/eawe/> For this exercise we are interested in two variables:
 
 |          |     |                                                                      |
 |:---------------:|:---------------:|:-------------------------------------:|
@@ -220,7 +220,7 @@ If you are confident with all the exercises we have completed based on the crime
 | EARNINGS | ... |    Current hourly earnings in \$ reported at the 2002 interviews     |
 |          |     |                                                                      |
 
-1.  Open the data. This dataset was stored in Stata format .dta, you will have to import it first.
+1.  Open the data. 
 
 2.  Calculate summary statistics (mean, median, minimum, maximum) for the variables EXP and EARNINGS
 
