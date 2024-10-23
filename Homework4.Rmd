@@ -159,7 +159,7 @@ $H_0:\beta_{2}=$`r fitb(0)`, $H_1:\beta_{2}\neq$ `r fitb(0)`
 
 3.  Calculate t-statistics for the intercept and the coefficient of cigarette prices. The critical t-value at the 5% significance level is 1.96.
 
--   Intercept: $t-value = \frac{\hat{\beta}_{1}-\beta_{1}^0}{s.e.(\hat{\beta}_{1})}=\approx$ `r fitb(1.729)`(Fill in with three decimal places) \< $t_{crit,5\%}= 1.96$
+-   Intercept: $t-value = \frac{\hat{\beta}_{1}-\beta_{1}^0}{s.e.(\hat{\beta}_{1})} \approx$ `r fitb(1.729)`(Fill in with three decimal places) \< $t_{crit,5\%}= 1.96$
 
 We cannot reject $H_0$. The intercept is statistically `r mcq(c(answer = "insignificant",  "significant"))`.
 
