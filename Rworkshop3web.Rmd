@@ -1,0 +1,345 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# R Workshop 3 - Predictions, Residuals and Multiple Regression Analysis
+
+In this computer lab we will have to achieve the following tasks/learning outcomes:
+
+-   import .Rdata data and view the data
+
+-   run simple regression model
+
+-   undertake hypothesis tests and predictions
+
+-   create the histogram of the residuals
+
+-   calculate the arithmetic mean of the residuals
+
+-   run multiple regression model
+
+<br>
+
+# Preparing your workspace
+
+Before you do each task, you need to prepare your workspace first.
+
+**Step 1**. Create a folder called RWorkshop3 under folder BS2280
+
+**Step 2**. Go to Blackboard week 6 R Workshop 3 and download datafile: **`crime.Rdata`**, **save it in the RWorkshop3 folder you created in step 1**
+
+**Step 3**. Open Rstudio and set working directory
+
+Menu bar → Click Session → Set Working Directory → Choose Directory → Select RWorkshop3 folder you created in step 1
+
+**Step 4.** Create an R script
+
+!! If you forget how to prepare your workspace, please review R Workshop 0 first.
+
+<br>
+
+## **For each task, replace the missing part XXXX to make these codes work.**
+
+<br>
+
+# Task 1. Open the data set in R.
+
+This is what we have done in R Workshop 2. In this Workshop 3, we will use crime.Rdata again, so repeat what you have done in R Workshop 2 task 1.
+
+Before you start working on the crime dataset, ensure that you have prepared the workspace. From R Workshop 1, we know the native data format of R is **`.Rdata`**. In this Workshop 3, we are going to use **`crime.Rdata`** so we do not need to activate library **`readxl`** this time.
+
+To open the R datafile **`crime.Rdata`**,
+
+**Option 1**. Click on
+
+![](images/openRdata.png)
+
+and select the **`crime.Rdata`** dataset.
+
+<br>
+
+**Option 2**. Use the command line:
+
+```{r message=FALSE, warning=FALSE,results='hide',eval=FALSE}
+load("~/Desktop/BS2280/R Workshop2/crime.rdata")    
+# this is my working path, you should change it to your working path
+```
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+summary(crime)        # get summary descriptive statistics for dataset crime
+```
+
+<br>
+
+# Task 2. Run a simple regression model of officers on crimes and discuss the statistical significance of the intercept, the coefficient of crimes and of R-squared ($R^2$).
+
+Running regression in R is simple.
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+officersfit <- lm(XXXX~XXXX,data=crime)
+officersfit
+```
+
+Look at the codes first.
+
+**`officersfit`**: name this regression model as **`officersfit`**
+
+**`lm()`**: **`lm()`** activates the regression function for linear model
+
+**`officers`**: dependent variable
+
+**`crimes`**: independent variable
+
+**`data=crime`**: specify variables **`officers`** and **`crimes`** are from dataset **`crime`**
+
+We can avoid repetitively including the **`crime$`** prefix by using the argument 'data = NAME OF DATASET'. The tilde (\~) is telling R that we regress **`officers`** on **`crimes`**.
+
+The sample estimated regression model is:
+
+$$
+\widehat{officers}=-5.4183+0.0238 {crimes}
+$$
+To get the detailed information of regression model, we use
+```{r message=FALSE, warning=FALSE,results='hide',eval=FALSE}
+summary(XXXX)
+```
+
+The output is produced and we should be careful with the interpretation. The intercept states that if we have zero crimes within a city, the number of police officers would be `r fitb(-5.4183)` (Fill in with four decimal places). In this case, the intercept is meaningless. Always be careful when interpreting an intercept when it does not lie within the data range. $P\_value$ of the intercept is `r fitb(0.943)` (Fill in with three decimal places) and it is `r mcq(c(answer = ">", "<"))` than 5% significance level, so the intercept is `r mcq(c("significant", answer = "insignificant"))`.
+
+We do not have any city that has actually a crime rate of zero. The slope coefficient states that for every additional crime, we observe on average `r fitb(0.0238)` (Fill in with four decimal places) more police officers. $P\_value$ of crimes coefficient is $<$ `r fitb(2e-16)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so crimes coefficient is `r mcq(c(answer = "significant", "insignificant"))`.
+
+To use more user-friendly numbers, we can also infer that for every 1,000 additional crimes committed within a city, 24 more police officers are employed.
+
+$R^2$ is the measure that provides information on the overall goodness of fit of the model. In this case $R^2$ is `r fitb(0.8323)` (Fill in with four decimal places). This means that `r fitb(83.23)`% (Fill in with two decimal places) of the variation in `r mcq(c("number of crimes", answer = "police officers"))` can be explained with the variation in `r mcq(c(answer = "number of crimes", "police officers"))`. Our estimated model has a `r mcq(c("bad", answer = "good"))` degree of explanatory power. The $P\_value$ of the whole model is $<$ `r fitb(2.2e-16)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the whole model is `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+# Task 3. Using the regression results from above, check the model's prediction for the number of police officers based on the number of crimes committed within a city.
+
+Predicted officers is calculated by
+
+$$
+\widehat{officers}_i=\hat{\beta}_1 + \hat{\beta}_2 crimes_i
+$$ We can use regression results to predict the number of police officers, based on the number of crimes committed. We will use the **predict** command to solve this task:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+crime$XXXX <- XXXX(officersfit, newdata=data.frame(crimes=crime$XXXX))
+```
+
+I start with explaining the right hand side first: The first argument of the **`predict`** command requires you to mention the model that we use for our predictions. In our case, it is **`officersfit`**.
+
+**`newdata=`**: The next argument **`newdata`**, requires information on the values we want to base our predictions on.
+
+**`data.frame(crimes=crime$crimes)`**: We use the actual number of crimes in each city: **`crimes=crime$crimes`**. If you wanted to predict the number of police officers for a city with 30,000 crimes committed, use: **`crimes=30000`**. Please do not forget to add the **`data.frame()`** command, otherwise you will get an error message.
+
+**`crime$officershat`**: We want to add our predictions as a variable called **`officershat`** or **`yhat`** to our crime dataset. This explains the left hand side of the command.
+
+Open the data viewer to take a look at the predictions.
+
+<br>
+
+# Task 4. Calculate the residuals $\hat{u}_i$ for each observation to identify how far off the predicted values are away from the actual values.
+
+$$
+Y_i = \hat{Y}_i+\hat{u}_i=\hat{\beta}_1 + \hat{\beta}_2 X_i + \hat{u}_i
+$$
+
+$$
+officers_i = \widehat{officers}_i+\hat{u}_i=\hat{\beta}_1 + \hat{\beta}_2 crimes_i + \hat{u}_i
+$$
+
+Therefore, residuals $\hat{u}_i$ is calculated by
+
+$$
+\hat{u}_i=officers_i-\widehat{officers}_i
+$$ The difference between the actual value of officers minus the predicted value of officers is the residual $\hat{u}_i$ - the unexplained part of our estimation. This 'error' we try to minimise when we use OLS:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+crime$residuals <- crime$XXXX-crime$XXXX
+```
+
+Now we look at the codes:
+
+**`crime$officers-crime$officershat`**: pick actual value of officers from crime dataset minus the predicted value of officers from crime dataset
+
+**`crime$residuals <-`**: assign the the results of **`crime$officers-crime$officershat`** to a variable called residuals to our crime dataset.
+
+Open the data viewer to see the results.
+
+<br>
+
+# Task 5. Construct the histogram of the residuals.
+
+A histogram plot helps to identify the distribution of the residuals. Remembers, that we assume that the residuals are approximately normally distributed.
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+hist(crime$XXXX, main = "Histogram of model residuals",
+xlab = "Residuals") 
+```
+
+Now we look at the codes:
+
+**`hist()`**: this function creates a histogram plot
+
+**`crime$residuals`**: pick variable residuals from dataset crime and make use of it to create a histogram
+
+**`main =`**: give this histogram a title "Relationship between number of police officers and crime"
+
+**`xlab =`**: name the x axis as "Residuals" for this histogram
+
+<br>
+
+# Task 6. Calculate the arithmetic mean of the residuals.
+
+We simple select the variable of interest and apply the mean command:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+XXXX(crime$residuals)
+```
+
+**`mean(crime$residuals)`**: mean function will calculate the average value for the variable residuals from crime dataset
+
+OLS Assumption 3. Disturbance term has zero expectation.
+
+This value is extremely small (0.00000000000001878304). According to Assumption 3, the value should be `r fitb(0)`, but due to the limit in the number of decimal places software packages use when storing numbers were are a tiny bit off.
+
+<br>
+
+# Task 7. Add **popdens** to the regression model, run the model and comment on the regression results. Identify differences between the results of the simple regression model and the multiple regression model:
+
+You can follow similar steps you have taken when undertaking the simple regression model:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+officersfit2 <- lm(officers~XXXX+XXXX,data=crime)
+summary(officersfit2)
+```
+
+Look at the codes.
+
+**`officersfit2`**: name this regression model as **`officersfit2`**
+
+**`lm()`**: **`lm()`** activates the regression function for linear model
+
+**`officers`**: the dependent variable
+
+**`crimes+popdens`**: we have two independent variables this time so it means we are running the multiple regression
+
+**`data=crime`**: specify variable "officers", "crimes" and "popdens" are from dataset "crime"
+
+**`summary()`**: this function shows the output table of the regression object **`officersfit2`**
+
+To add another independent variable to our model use **`+ new variable`** after the first independent variable. The display format of the regression coefficients is not very convenient, as R used the scientific notation heavily. To 'punish' R for using scientific notation, we can introduce a penalty with the scipen option. The higher the penalty, the less likely R uses scientific notation, i.e. if the penalty is 999, R will hardly use scientific notation.
+
+For example:
+
+```{r message=FALSE, warning=FALSE, results='hide',eval=FALSE}
+options(scipen=4)                 # Set scipen = 0 to get back to default
+summary(officersfit2)
+```
+
+Always, we can ask Dr.Google ("R option scipen") or use the help function (?options) to figure out what the optional input into the option function.
+
+$$
+\widehat{officers}=-182.2418+0.0232 {crimes}+0.0400 {popdens}
+$$
+
+Now carefully compare and contrast the results from the simple and the multiple regression model.
+
+<br>
+
+# Task 8. Comment on the R-squared ($R^2$) values across both the simple regression model and the multiple regression model.
+
+Simple regression model **`officersfit`** output:
+
+![](images/simplersquared.png){width="600"}
+
+Multiple regression model **`officersfit2`** output:
+
+![](images/multirsquared.png){width="600"}
+
+The R-squared value is `r mcq(c("lower", answer = "higher"))` for the multiple regression model than for the simple regression model. Adding more variables to a model will always `r mcq(c(answer = "increase", "decrease"))`the explanatory power of a model.
+
+The R-squared for the multiple regression model reveals that `r fitb(86.3)`% (Fill in with one decimal places) of the variation in `r mcq(c("number of crimes", answer = "police officers", "population density", "number of crimes and population density"))` can be explained by the variations in `r mcq(c("number of crimes", "police officers", "population density", answer = "number of crimes and population density"))` variables. The explanatory power of the estimated model is`r mcq(c(answer = " high", "low"))`.
+
+<br>
+
+# Further Exercise
+
+We move away from crimes to CEO salaries. Download the data set called ceosal.RData from the module page on Blackboard and save it. The dataset records information on CEOs (their salary, age, etc.) across 177 companies and some financial information on these companies. (Source: <http://fmwww.bc.edu/ec-p/data/wooldridge/datasets.list.html>) In the following exercises you can practice your skills you have gained in the previous three workshops:
+
+1.  Open the data set in R
+
+2.  Label the variables using the following definitions:
+
+|        |     |                                     |
+|:------:|:---:|:-----------------------------------:|
+| salary | ... |    CEO compensation in 1990, \$     |
+|  age   | ... |            age in years             |
+|  bach  | ... |   college =1 if attended college    |
+|  grad  | ... | grad =1 if attended graduate school |
+| comten | ... |         years with company          |
+| ceoten | ... |      years as CEO with company      |
+| sales  | ... |       Firm sales in 1990, \$        |
+| profit | ... |      Firm profits in 1990, \$       |
+| mktval | ... |    Firm market value in 1990, \$    |
+
+3.  Provide summary statistics for the variables salary, sales, mktval and comment on them.
+
+4.  Run a simple regression model of CEO salary on firm sales and interpret the results.
+
+$$
+salary_i = \beta_1+\beta_2sales_i+u_i
+$$
+
+5.  Rescale the variables by converting salary in \$ 000 and sales and mktval in \$ million. Hint: create a new variable.
+
+6.  Using the rescaled variable, re-run the model in question 4 and interpret the estimated coefficients.
+
+7.  What can you say about the goodness of fit of the model? Is it a good model to explain variation in CEO salary?
+
+8.  Add the firm market value to the above regression model, run the model and comment on the regression results. Identify differences between the results of the simple regression model undertaken in question 4.
+
+$$
+salary_i = \beta_1+\beta_2sales_i+\beta_3mktval_i+u_i
+$$
+
+9.  Comment on the R-squared values across both the simple regression model and the multiple regression model in question 7.
+
+10. Construct the predicted values of CEO salary from the regression model run in Question 7, i.e.:
+
+$$
+\widehat {salary_i} = \hat\beta_1+\hat\beta_2sales_i+\hat\beta_3mktval_i
+$$
+
+11. Calculate the predicted residuals
+
+12. Construct the histogram of the predicted residuals
+
+***The following questions are optional and aim at students who want to deepen their understanding in calculating regression coefficients and improve their R skills:***
+
+13. Consider the following regression model of CEO salary on firm sales. $$
+    salary_i = \beta_1+\beta_2sales_i+u_i
+    $$
+
+    We aim to estimate the values of the regression coefficients, which in a simple regression model can be estimated using the following formulae:
+
+$$
+\hat\beta_2=\frac{\sum^{n}_{i=1}(X_i-\overline{X})(Y_i-\overline{Y})}{\sum^{n}_{i=1}\left(X_i-\overline{X}\right)^2}\\
+$$ $$
+\hat\beta_1=\overline{Y}-\hat\beta_2\overline{X}
+$$
+
+Calculate the values of the regression coefficients $\hat\beta_1$ and $\hat\beta_2$ in R as per the above formulae.
+
+If you're finding these questions challenging, feel free to join our PAL (Peer Assisted Learning) sessions where the session leaders will guide you through the solutions. You can find more details about PAL sessions on Blackboard.
