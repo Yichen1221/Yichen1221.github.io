@@ -13,7 +13,7 @@ library(webexercises)
 #style_widgets(incorrect = "goldenrod", correct = "purple")
 ```
 
-# Homework 5: Multiple Regression Model II
+# Homework 6: Multiple Regression Model II
 
 ## Question 1
 
