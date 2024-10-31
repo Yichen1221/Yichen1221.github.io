@@ -109,8 +109,8 @@ The sample estimated regression model is:
 
 $$
 \widehat{officers}=-5.4183+0.0238 {crimes}
-$$
-To get the detailed information of regression model, we use
+$$ To get the detailed information of regression model, we use
+
 ```{r message=FALSE, warning=FALSE,results='hide',eval=FALSE}
 summary(XXXX)
 ```
