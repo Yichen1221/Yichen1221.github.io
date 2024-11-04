@@ -1,0 +1,267 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 8: Dummy Variables
+
+## Question 1
+
+Does the sex of an individual affect educational attainment?
+
+We regress $S$ (educational attainment in years) on $ASVABC$ (Ability score), $SM$ (educational attainment of mother in years), $SF$ (educational attainment of father in years), and $MALE$, a dummy variable that is 1 for male respondents and 0 for female ones. Interpret the coefficients and perform t-tests. The critical t value at the 5% significance level is 1.96. Is there any evidence that the educational attainment of males is different from that of females?
+
+![](images/regressionoutput1.png){width="600"}
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
+
+$ASVABC$:
+
+Interpretation: `r fitb(1)` score higher ability score increases educational attainment on average by `r fitb(1.20327)` (Fill in with five decimal places) more years, `r mcq(c(answer = "holding everything else constant", "holding SM constant", "holding SF constant", "holding MALE constant"))`.
+
+$H_0:\beta_{2}=$ `r fitb(0)`; $H_1:\beta_{2}\neq$ `r fitb(0)`
+
+$t-value = \frac{\hat{\beta}_{2}-\beta_{2}^0}{s.e.(\hat{\beta}_{2})}\approx$ `r fitb(10.607)` (Fill in with three decimal places) \> $t_{crit,5\%}=1.96$
+
+Therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level. The coefficient of ability score is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+$P\_value$ of $ASVABC$ coefficient is $<$ `r fitb(2e-16)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of ability score is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$SM$:
+
+Interpretation: One more year of educational attainment of the mother leads on average to 0.17453 years of educational attainment, `r mcq(c(answer = "ceteris paribus", "holding ASVABC constant", "holding SF constant", "holding MALE constant"))`.
+
+$H_0:\beta_{3}=$ `r fitb(0)`; $H_1:\beta_{3}\neq$ `r fitb(0)`
+
+$t-value = \frac{\hat{\beta}_{3}-\beta_{3}^0}{s.e.(\hat{\beta}_{3})}\approx$ `r fitb(3.671)` (Fill in with three decimal places) \> $t_{crit,5\%}=1.96$
+
+Therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level. The coefficient of educational attainment of the mother is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+$P\_value$ of $SM$ coefficient is 0.000268 and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of educational attainment of the mother is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$SF$:
+
+Interpretation: One more year of educational attainment of the father leads on average to `r fitb(0.11214)` (Fill in with five decimal places) years of educational attainment, ceteris paribus.
+
+$H_0:\beta_{4}=0; H_1:\beta_{4} \neq 0$
+
+$t-value = \frac{\hat{\beta}_{4}-\beta_{4}^0}{s.e.(\hat{\beta}_{4})}=\frac{0.11214-0}{0.04125}\approx 2.719 > t_{crit,5\%}=1.96$
+
+Therefore we can reject the null hypothesis at the 5% significance level. The coefficient of educational attainment of the father is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+$P\_value$ of $SF$ coefficient is `r fitb(0.006782)` (Fill in with six decimal places) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of educational attainment of the father is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$MALE$:
+
+Interpretation: `r mcq(c("Women", answer = "Men"))` have on average 0.86372 years less education than `r mcq(c(answer = "Women", "Men"))`, ceteris paribus.
+
+$H_0:\delta=$ `r fitb(0)`; $H_1:\delta \neq$ `r fitb(0)`
+
+$t-value = \frac{\hat{\delta}-\delta^0}{s.e.(\hat{\delta})}\approx$ `r fitb(-4.282)` (Fill in with three decimal places) \< $-t_{crit,5\%}=-1.96$
+
+Therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level. The coefficient of the male dummy is statistically significant.
+
+$P\_value$ of $MALE$ coefficient is `r fitb(2.22e-05)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of the male dummy is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$Intercept$:
+
+Interpretation: A person with an ability score of `r fitb(0)`, who has parents with no educational attainment and who is `r mcq(c("male", answer = "female"))` will have on average 10.90114 years of education.
+
+$H_0:\beta_{1}=0; H_1:\beta_{1} \neq 0$
+
+$t-value = \frac{\hat{\beta}_{1}-\beta_{1}^0}{s.e.(\hat{\beta}_{1})}=\frac{10.90114-0}{0.59470}\approx 18.331 > t_{crit,5\%}=1.96$
+
+Therefore we can reject the null hypothesis at the 5% significance level. The intercept is statistically significant.
+
+<br>
+
+Summary: The slope coefficients are all significant at the 1 percent level or higher. That for $MALE$ indicates that males tend to have nearly a year less schooling than females, controlling for $ASVABC$ score and parental education. The reason is that although males are now under-represented at the postgraduate level, a relatively recent phenomenon, as well as over-represented among high school drop-outs, a long-standing one.
+
+<br>
+
+## Question 2
+
+Does ethnicity affect educational attainment?
+
+We add the following ethnic dummy variables to the regression model above:
+
+|            |                                         |
+|:----------:|:---------------------------------------:|
+| $ETHHISP$  |       1 if hispanic, 0 otherwise        |
+| $ETHBLACK$ |         1 if black, 0 otherwise         |
+| $ETHWHITE$ | 1 if not hispanic or black, 0 otherwise |
+
+We regress $S$ on $ASVABC$, $MALE$, $SM$, $SF$, $ETHBLACK$, and $ETHHISP$. In this specification $ETHWHITE$ has been chosen as the reference category, and so it is omitted. Interpret the regression results and perform t tests on the coefficients. The critical t value at the 5% significance level is 1.96.
+
+![](images/regressionoutput2.png){width="600"}
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
+
+$ASVABC$:
+
+Interpretation: `r fitb(1)` score higher ability score increases educational attainment on average by `r fitb(1.26416)` (Fill in with five decimal places) more years, `r mcq(c(answer = "holding everything else constant", "holding ASVABC constant", "holding SF constant", "holding MALE constant"))`.
+
+$P\_value$ of $ASVABC$ coefficient is $<$ `r fitb(2e-16)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of ability score is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$SM$:
+
+Interpretation: One more year of educational attainment of the mother leads on average to 0.17396 years of educational attainment, ceteris paribus.
+
+$P\_value$ of $SM$ coefficient is 0.000321 and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of educational attainment of the mother is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$SF$:
+
+Interpretation: One more year of educational attainment of the father leads on average to 0.11385 years of educational attainment, ceteris paribus.
+
+$P\_value$ of $SF$ coefficient is `r fitb(0.006889)` (Fill in with six decimal places) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of educational attainment of the father is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$MALE$:
+
+Interpretation: `r mcq(c("Women", answer = "Men"))` have on average 0.83509 years less education than `r mcq(c(answer = "Women", "Men"))`, ceteris paribus.
+
+$P\_value$ of $MALE$ coefficient is `r fitb(4.39e-05)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the coefficient of the male dummy is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+$ETHBLACK$:
+
+Interpretation: A `r mcq(c("white", answer = "black"))` person has on average 0.51097 years more education than a `r mcq(c(answer = "white", "black"))` person, ceteris paribus.
+
+$P\_value$ of $ETHBLACK$ coefficient is `r fitb(0.13376)` (Fill in with five decimal places) and it is `r mcq(c(answer = ">", "<"))` than 5% significance level, so the coefficient of the black ethnicity dummy is statistically `r mcq(c("significant", answer = "insignificant"))`. This means that we cannot say that on average a black person has more education than a white person.
+
+<br>
+
+$ETHHISP$:
+
+Interpretation: A `r mcq(c("white", answer = "hispanic"))` person has on average 0.18325 years more education than a `r mcq(c(answer = "white", "hispanic"))` person, ceteris paribus
+
+$P\_value$ of $ETHHISP$ coefficient is `r fitb(0.582705)` (Fill in with six decimal places) and it is `r mcq(c(answer = ">", "<"))` than 5% significance level, so the coefficient of the hispanic ethnicity dummy is statistically `r mcq(c("significant", answer = "insignificant"))`. This means that we cannot say that on average a hispanic person has more education than a white person.
+
+<br>
+
+$Intercept$:
+
+Interpretation: A `r mcq(c(answer = "white", "hispanic", "black"))` person with an ability score of 0, who has parents with no educational attainment and who is `r mcq(c("male", answer = "female"))` will have on average 10.78365 years of education.
+
+$P\_value$ of $Intercept$ is $<$ `r fitb(2e-16)` (Fill in with scientific notation) and it is `r mcq(c(">", answer = "<"))` than 5% significance level, so the intercept is statistically `r mcq(c(answer = "significant", "insignificant"))`.
+
+<br>
+
+Summary: Both blacks and Hispanics have more schooling than whites (short for non-black, non-hispanic), controlling for $ASVABC$ score, sex, and parental education, but in neither case is the difference significant, at least in this sample.
+
+<br>
+
+## Question 3
+
+Using the ANOVA tables below, Evaluate whether the ethnicity dummies as a group have significant explanatory power for educational attainment by comparing the residual sums of squares in the regressions in Question 1 and 2. The critical F value at the 5% significance level is 3.01. Sample size $n=500$. 
+
+Analysis of Variance Table
+
+![](images/model1.png){width="600"}
+
+![](images/model2.png){width="600"}
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+Review lecture 8 part 2.
+
+`r unhide()`
+
+You have to undertake an F-test:
+
+Step 1. State the null and alternative hypotheses
+
+Null Hypothesis: $H_0: \delta_{b} = \delta_{h} =$ `r fitb(0)`
+
+Alternative Hypothesis: $H_1: \delta_{b} \neq 0 \, or \, \delta_{h} \neq 0 \, or \, both \, \delta_{b} \, and \, \delta_{h} \neq 0$
+
+<br>
+
+Step 2. Select the significance level:
+
+Significance level $\alpha=$ `r fitb(5)`$\%$
+
+<br>
+
+Step 3. Select and calculate the test statistics: $F(cost\, in\, dof, dof\, remaining) =\dfrac{reduction\, in\, RSS/cost\ in\, dof}{RSS\, remaining/dof\, remaining}=\dfrac{(RSS_1-RSS_2)/cost\ in\, dof}{RSS_2/dof\, remaining}$
+
+$RSS_1=$ `r fitb(2457.21)` (Fill in with two decimal places)
+
+$RSS_2=$ `r fitb(2445.56)` (Fill in with two decimal places)
+
+cost in dof $=$ `r fitb(2)` (Fill in with interger)
+
+dof remaining $n-k=$ `r fitb(493)` (Fill in with interger)
+
+$F(2, 493)=$ `r fitb(1.17)` (Fill in with two decimal places)
+
+<br>
+
+Step 4. Set the decision rule:
+
+$F_{crit,5\%}(cost\, in\, dof, dof\, remaining)=F_{crit,5\%}(2, 493)=3.01$
+
+<br>
+
+Step 5. Make statistical decisions:
+
+$F=1.17 < F_{crit,5\%}(2, 493)=3.01$
+
+We cannot reject the null $H_0:\delta_{b} = \delta_{h} = 0$.
+
+We conclude that adding two ethnicity dummies `r mcq(c(answer = "does not improve", "improve"))` the overall fit of the model significantly.
+
+<br>
+
+## Question 4
+
+Is the effect of the $ASVABC$ score on educational attainment different for males and females? We define a slope dummy variable $MALEASVC$ as the product of $MALE$ and $ASVABC$:
+
+```{=tex}
+\begin{equation*}
+    MALEASVC = MALE\times ASVABC
+\end{equation*}
+```
+Regress $S$ on $ASVABC$, $SM$, $SF$, $ETHBLACK$, $ETHHISP$, $MALE$, and $MALEASVC$, interpret the equation.
+
+![](images/regressionoutput3.png){width="600"}
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
