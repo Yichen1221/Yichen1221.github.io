@@ -74,12 +74,12 @@ One more year of education will increase monthly earning on average by 60.214USD
 
 Intercept: estimate coefficient = `r fitb(-272.528)` (Fill in with three decimal places).
 
-A person without education would have on average a `r mcq(c("positive", answer = "negative"))`monthly income of 272.528USD. The $p-value=$`r fitb(0.0112)` (Fill in with four decimal places) $<5\%$ shows that we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level, therefore the intercept is statistically `r mcq(c("insignificant", answer = "significant"))`. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
+A person without education and without work experience would have on average a `r mcq(c("positive", answer = "negative"))`monthly income of 272.528USD. The $p-value=$`r fitb(0.0112)` (Fill in with four decimal places) $<5\%$ shows that we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis at the 5% significance level, therefore the intercept is statistically `r mcq(c("insignificant", answer = "significant"))`. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
 
 `r hide("Click here to see the solution")` 
 Intercept: estimate coefficient = -272.528.
 
-A person without education would have on average a negative monthly income of 272.528USD. The $p-value=0.0112 <5\%$ shows that we can reject the null hypothesis at the 5% significance level, therefore the intercept is statistically significant. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
+A person without education and without work experience would have on average a negative monthly income of 272.528USD. The $p-value=0.0112 <5\%$ shows that we can reject the null hypothesis at the 5% significance level, therefore the intercept is statistically significant. Note that the intercept is an out-of-sample estimate, therefore be careful with its interpretation.
 
 `r unhide()`
 
