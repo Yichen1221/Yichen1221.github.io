@@ -1,0 +1,197 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+editor_options: 
+  markdown: 
+    wrap: 256
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 9: Nonlinear Models and Transformation of Variables I - Solution
+
+## Question 1
+
+Until now we have assumed that our regression model is linear in variables and parameters. Explain what this means.
+
+`r hide("I need a hint")`
+
+Lecture 9 Part 1
+
+`r unhide()`
+
+`r hide("Solution")` A regression is linear in variables if the variables on the right-hand side of the equation are included exactly as defined, rather than as function. E.g.
+
+```{=tex}
+\begin{equation*}
+   Y_i = \beta_1 + \beta_2 X_{2i} + \beta_3 X_{3i} +...+\beta_k X_{ki}+ u_i
+  \end{equation*}
+```
+where $X_2$ could be age of a person measured in years and $X_3$ the work experience measured in year.
+
+A regression is linear in parameters if all the coefficients (betas) are just multiplied with the variables on the right hand side of the equation. E.g.
+
+```{=tex}
+\begin{equation*}
+   Y_i = \beta_1 + \beta_2 X_{2i} + \beta_3 X_{3i} +...+\beta_k X_{ki}+ u_i
+  \end{equation*}
+```
+where $\beta_2 X_{2i}$ shows the impact of a specific level of $X_2$ on $Y$. `r unhide()`
+
+<br>
+
+## Question 2
+
+It has often been observed that there is a weak tendency for years of schooling to be inversely related to the number of siblings (brothers and sisters) of an individual. The regression shown below has been fitted on the hypothesis that the adverse effect
+is nonlinear.
+
+$Z$ is defined as the reciprocal of the number of siblings, for individuals with at least one sibling. Sketch the regression relationship and provide an interpretation of the regression results.
+
+![](images/regressionoutput1.png){width="600"}
+
+`r hide("I need a hint")`
+
+We have to transform the results so that we get more meaningful results. Write down the equation where you substitute $\frac{1}{Siblings_i}$for $Z$.
+
+`r unhide()`
+
+The correct estimated regression model is `r mcq(c(answer = "Equation 1", "Equation 2", "Equation 3"))`
+
+`r hide("Solution")` Given the definition of $Z$, its coefficient does not have any straightforward interpretation. The best one can say is that the relationship predicts between 15 and 16 years of schooling for those with only one sibling and that the
+relationship approaches a lower limit of 14 years of schooling for those with many siblings. The relationship is not defined for those with no siblings.
+
+We have to transform the results so that we get more meaningful results. Write down the equation where you substitute $\frac{1}{Siblings_i}$for $Z$, the correct estimated regression model is Equation 1.
+
+By substituting number of siblings into the equation, you will get the data to draw the nonlinear regression line diagram.
+
+![](images/q2answer.png){width="400"}
+
+`r unhide()`
+
+Equation 1: \begin{equation}
+   \hat{S_i} = 13.9340 + 1.5688 \frac{1}{Siblings_i}
+  \end{equation}
+
+Equation 2: \begin{equation}
+   \hat{S_i} = 13.9340 + 1.5688 {Siblings_i}
+  \end{equation}
+
+Equation 3: \begin{equation}
+   \widehat{Siblings_i} = 13.9340 + 1.5688 {S_i}
+  \end{equation}
+
+To interpret this nonlinear regression model, we need to calculate the marginal effect by taking the first derivative. Which of the following is the correct first derivative? `r mcq(c("Equation 1", answer = "Equation 2", "Equation 3"))`
+
+`r hide("Solution")` Equation 2 `r unhide()`
+
+Equation 1: \begin{equation*}
+   \frac{\partial S_i}{\partial Siblings_i} = -1.5688 \frac{1}{Siblings_i}
+  \end{equation*}
+
+Equation 2: \begin{equation*}
+   \frac{\partial S_i}{\partial Siblings_i} = -1.5688 \frac{1}{Siblings_i^2}
+  \end{equation*}
+
+Equation 3: \begin{equation*}
+   \frac{\partial S_i}{\partial Siblings_i} = -1.5688{Siblings_i}
+  \end{equation*}
+
+Now you can calculate the marginal effect of number of siblings on educational attainment. As expected, the sign is `r mcq(c("positive", answer = "negative"))`, therefore having more siblings has an adverse effect on educational attainment.
+
+`r hide("Solution")`
+Now you can calculate the marginal effect of number of siblings on educational attainment. As expected, the sign is negative, therefore having more siblings has an adverse effect on educational attainment.
+`r unhide()` 
+
+<br>
+
+## Question 3
+
+The output below shows the result of regressing $LGWT04$, the logarithm of weight in 2004, measured in pounds, on $LGHEIGHT$, the logarithm of height, measured in inches. Provide an interpretation of the slope coefficient and evaluate the regression
+results.
+
+![](images/regressionoutput2.png){width="600"}
+
+`r hide("I need a hint")`
+
+Writing out the estimated regression model will be helpful.
+
+`r unhide()`
+
+The correct estimated regression model is `r mcq(c("Equation 1", "Equation 2", answer = "Equation 3"))`
+
+`r hide("Solution")`
+The correct estimated regression model is Equation 3.
+`r unhide()` 
+
+Equation 1: \begin{equation*}
+   \widehat{WT04_i} = -3.7883 + 2.1064 HEIGHT_i
+  \end{equation*}
+
+Equation 2: \begin{equation*}
+   \widehat{LGWT04_i} = -3.7883 + 2.1064 HEIGHT_i
+  \end{equation*}
+
+Equation 3: \begin{equation*}
+   \widehat{LGWT04_i} = -3.7883 + 2.1064 LGHEIGHT_i
+  \end{equation*}
+
+We have here a `r mcq(c("level-level", "log-level", "level-log", answer = "log-log"))` model! Therefore the slope coefficient indicates that the `r mcq(c(answer = "elasticity", "semi-elasticity"))`of weight with respect to height was 2.1064, the coefficient being highly statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+`r hide("Solution")`
+We have here a log-log model! Therefore the slope coefficient indicates that the elasticity of weight with respect to height was 2.1064, the coefficient being highly statistically significant.
+`r unhide()`
+
+A 1 `r mcq(c("inch", "unit", answer = "%"))` increase in height will lead to a 2.1064 `r mcq(c("pounds", "units", answer = "%"))` increase in weight. As should be expected, variation in height is responsible for some of the variation in weight, but other factors are evidently important. The intercept has no meaning.
+
+`r hide("Solution")`
+A 1% increase in height will lead to a 2.1064% increase in weight. As should be expected, variation in height is responsible for some of the variation in weight, but other factors are evidently important. The intercept has no meaning.
+`r unhide()`
+
+<br>
+
+## Question 4
+
+The output below shows the result of regressing $LGWT04$, the logarithm of weight in 2004, measured in pounds, on $HEIGHT$, height measured in inches. Provide an interpretation of the slope coefficient and evaluate the regression results.
+
+![](images/regressionoutput3.png){width="600"}
+
+The correct estimated regression model is `r mcq(c("Equation 1", answer = "Equation 2", "Equation 3"))`
+
+`r hide("Solution")`
+The correct estimated regression model is Equation 2.
+`r unhide()`
+
+Equation 1: 
+\begin{equation*}
+   \widehat{WT04_i} = 2.98873 + 0.03099 HEIGHT_i
+  \end{equation*}
+
+Equation 2: 
+\begin{equation*}
+   \widehat{LGWT04_i} = 2.98873 + 0.03099 HEIGHT_i
+  \end{equation*}
+
+Equation 3: 
+\begin{equation*}
+   \widehat{LGWT04_i} = 2.98873 + 0.03099 LGHEIGHT_i
+  \end{equation*}
+
+Here we have a `r mcq(c("level-level", answer = "log-level", "level-log", "log-log"))` model, also known as a semi-log model! Since it is a semilogarithmic specification, the coefficient of HEIGHT indicates that an extra `r mcq(c(answer = "inch", "unit", "%"))` of height increases weight by `r fitb(3.0990)` (Fill in with three decimal places) `r mcq(c("pounds", "units", answer = "%"))`.
+
+`r hide("Solution")`
+Here we have a log-level model, also known as a semi-log model! Since it is a semilogarithmic specification, the coefficient of HEIGHT indicates that an extra inch of height increases weight by 3.0990%.
+`r unhide()`
+
+The coefficient is highly statistically `r mcq(c("insignificant", answer = "significant"))`. Note that the intercept will be meaningless as a person cannot have a height of 0 inches!
+
+`r hide("Solution")`
+The coefficient is highly statistically significant. Note that the intercept will be meaningless as a person cannot have a height of 0 inches!
+`r unhide()`
