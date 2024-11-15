@@ -1,0 +1,157 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 6: Multiple Regression Model II
+
+## Question 1
+
+It seems that the first study in hedonic pricing was Waugh’s investigation of the prices of vegetables in the Boston wholesale market (Waugh, 1929). Waugh was an economist working for the Bureau of Agricultural Economics and he was surprised to find that one box of cucumbers might sell for \$7 while another for only \$1. Being told that thinner cucumbers had better texture and taste than fat ones, he fitted the following regression (standard errors in parentheses, data from 1925):
+
+```{=tex}
+\begin{equation*}
+\begin{array}{c*{3}{r@{.}l}}
+\hat{P_{i}}= &508.0&+32.3L_{i}&-8.80D_{i} \qquad R^2=0.35\\
+\phantom{nettfa} & (272.0)& (20.1) &(4.45) \qquad F(2,47)=12.43
+\end{array}
+\end{equation*}
+```
+where $P_{i}$ is the price, in cents, of a box of cucumbers and $L_{i}$ and $D_{i}$ are the length in inches and the diameter/length ratio, as a percentage, of the cucumbers in the box. The boxes in the market were carefully sorted so that their contents were uniform in terms of these characteristics. Give an interpretation of the regression results.
+
+An extra inch of length increases the value of the box by `r fitb(32.3)` (Fill in with one decimal places) cents. A one `r mcq(c("cent", "unit",  answer = "percent"))`increase in the diameter/length ratio reduces the value of the box by `r fitb(8.8)` (Fill in with one decimal places) cents. Note that the number of cucumbers in a box will be different for different dimensions. The volume and approximate total weight (approximately a bushel) are fixed.
+
+`r hide("Click here to see the solution")`
+An extra inch of length increases the value of the box by 32.3 cents. A one percent increase in the diameter/length ratio reduces the value of the box by 8.8 cents. Note that the number of cucumbers in a box will be different for different dimensions. The volume and approximate total weight (approximately a bushel) are fixed.
+`r unhide()`
+
+<br>
+
+## Question 2
+
+We estimate an educational attainment function by regressing $S$ (educational attainment) on a general ability score $(ASVABC)$, and the educational attainment of the mother $(SM)$ and father $(SF)$.
+
+a.  Undertake an F-test (using the ANOVA table below) to check the overall significance of the estimated model. The critical F value at the 5% significance level is $F_{crit}= 2.62$.
+
+![](images/regressionoutput1.png){width="600"}
+
+![](images/anova1.png){width="600"}
+
+Hypothesis test for $R^2$
+
+Step 1. Write hypothesis test for $R^2$: $H_0:R^2=$ `r fitb(0)`; $H_1:R^2 \neq$ `r fitb(0)`
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate F-statistic:
+
+You can use $R^2$ to calculate the F-statistic (or find it in the output table).
+
+$R^2=$ `r fitb(0.3335)` (Fill in with four decimal places)
+
+$k=$`r fitb(4)` (Fill in with integer)
+
+$n=$`r fitb(500)` (Fill in with integer)
+
+$F(3,496)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)} \approx$`r fitb(82.74)` (Fill in with two decimal places)
+
+Step 4. Compare F test statistic with the critical F-value: 82.74 \>`r fitb(2.62)` (Fill in with two decimal places)
+
+Step 5. The F statistic is greater than the critical F value, therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis. The estimated model is statistically `r mcq(c("insignificant", answer = "significant"))`.
+
+`r hide("Click here to see the solution")`
+Step 1. Write hypothesis test for $R^2$: $H_0:R^2=0$ ; $H_1:R^2 \neq 0$
+
+Step 3. Calculate F-statistic:
+
+You can use $R^2$ to calculate the F-statistic (or find it in the output table).
+
+$R^2=0.3335$
+
+$k=4$
+
+$n=500$
+
+$F(3,496)=\frac{R^2/(k-1)}{(1-R^2)/(n-k)} \approx 82.74$
+
+Step 4. Compare F test statistic with the critical F-value: 82.74 \> 2.62
+
+Step 5. The F statistic is greater than the critical F value, therefore we can reject the null hypothesis. The estimated model is statistically significant.
+`r unhide()`
+
+
+<br>
+
+b.  In another attempt to improve our estimated model, we add two speed test scores, $ASVABNO$ and $ASVABCS$, to the regression model:
+
+![](images/regressionoutput2.png){width="600"}
+
+![](images/anova2.png){width="600"}
+
+Using the $ANOVA$ table below, perform an F test of the joint explanatory power of $ASVABNO$ and $ASVABCS$. The critical F statistics at the 1\% significance level is $F_{crit}= 3.01$.
+
+Step 1. Write hypothesis test: $$H_0:\beta_{5}=\beta_{6}=$ `r fitb(0)`; $H_1:\beta_{5} \neq \beta_{6} \neq$ `r fitb(0)`
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate F-statistic:
+You need to use the information in two Analysis of Variance Tables.
+
+From the first Analysis of Variance Table, $RSS_{1}=$ `r fitb(2548.24)` (Fill in with two decimal places)
+
+From the second Analysis of Variance Table, $RSS_{2}=$ `r fitb(2488.11)` (Fill in with two decimal places)
+
+\begin{equation*}
+F(cost\;in\;d.f., d.f.\;remaining)=\frac{reduction \; in \; RSS/cost \; in \; d.f.}{RSS \; remaining/degrees\;of\;freedom\;remaining}\\
+\end{equation*}
+
+$cost\;in\;d.f.=$`r fitb(2)` (Fill in with integer)
+
+$d.f.\;remaining=$ `r fitb(494)` (Fill in with integer)
+
+$F(2, 494)= \frac{(RSS_{1}-RSS_{2})/2}{RSS_{2}/494} \approx$  `r fitb(5.97)` (Fill in with two decimal places)
+
+Step 4. Compare F test statistic with the critical F-value: 5.97 \>`r fitb(3.01)` (Fill in with two decimal places)
+
+Step 5. The F statistic is greater than the critical F value, therefore we `r mcq(c("cannot", answer = "can"))` reject the null hypothesis. We conclude that $ASVABNO$ and $ASVBCS$ do have `r mcq(c("insignificant", answer = "significant"))` joint explanatory power.
+
+`r hide("Click here to see the solution")`
+Step 1. Write hypothesis test: $$H_0:\beta_{5}=\beta_{6}=0$; $H_1:\beta_{5} \neq \beta_{6} \neq 0$
+
+Step 2. Significance level: 5%
+
+Step 3. Calculate F-statistic:
+You need to use the information in two Analysis of Variance Tables.
+
+From the first Analysis of Variance Table, $RSS_{1}= 2548.24$ 
+
+From the second Analysis of Variance Table, $RSS_{2}=2488.11$ 
+
+\begin{equation*}
+F(cost\;in\;d.f., d.f.\;remaining)=\frac{reduction \; in \; RSS/cost \; in \; d.f.}{RSS \; remaining/degrees\;of\;freedom\;remaining}\\
+\end{equation*}
+
+$cost\;in\;d.f.= 2$
+
+$d.f.\;remaining= 494$ 
+
+$F(2, 494)= \frac{(RSS_{1}-RSS_{2})/2}{RSS_{2}/494} = \approx 5.97$ 
+
+Step 4. Compare F test statistic with the critical F-value: 5.97 \> 3.01
+
+Step 5. The F statistic is greater than the critical F value, therefore we can reject the null hypothesis. We conclude that $ASVABNO$ and $ASVBCS$ do have significant joint explanatory power.
+
+
+`r unhide()`
+
+
