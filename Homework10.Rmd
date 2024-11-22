@@ -1,0 +1,137 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 10: Nonlinear Models and Transformation of Variables II
+
+## Question 1
+
+The output shows the result of regression of $WEIGHT04$ (in pounds) on $HEIGHT$ (in inches) and its square, $HEIGHTSQ$. Provide an interpretation of the regression results.
+
+![](images/regressionoutput1.png){width="600"}
+
+The correct estimated regression model is `r mcq(c("Equation 1", answer = "Equation 2", "Equation 3"))`
+
+Equation 1: \begin{equation*}
+   \widehat{Weight04_i} = -132.556 + 3.758 Height_i+ 0.0096 Height_i
+  \end{equation*}
+
+Equation 2: \begin{equation*}
+   \widehat{Weight04_i} = -132.556 + 3.758 Height_i+ 0.0096 Height_i^2
+  \end{equation*}
+
+Equation 3: \begin{equation*}
+   \widehat{Weight04_i} = -132.556 + 3.758 Height_i
+  \end{equation*}
+
+Here we have a quadratic model. To be able to interpret the marginal effect of height on weight, we have to take the first derivative of weight with respect to height.
+
+`r hide("I need a hint")`
+
+Make use of the power rule, derivative of $X^2$ is $2X^{2-1} = 2X$
+
+`r unhide()`
+
+The correct first derivative of weight with respect to height is `r mcq(c("Equation 1", "Equation 2", answer = "Equation 3"))`
+
+Equation 1: \begin{equation*}
+   \frac{\partial\widehat{Weight04_i}}{\partial Height_i} = 3.758 + 2\times 0.0096
+  \end{equation*}
+
+Equation 2: \begin{equation*}
+   \frac{\partial\widehat{Weight04_i}}{\partial Height_i} = 3.758 + 0.0096 \times Height_i
+  \end{equation*}
+
+Equation 3: \begin{equation*}
+    \frac{\partial\widehat{Weight04_i}}{\partial Height_i} = 3.758 + 2\times 0.0096 \times Height_i
+  \end{equation*}
+
+Plug in various values of height to get the marginal effect.
+
+For example, if a person with a height of 70 inches, $\frac{\partial\widehat{Weight04_i}}{\partial Height_i}=$`r fitb(5.102)` (Fill in with three decimal places)
+
+The interpretation of this value is: A one `r mcq(c(answer = "inch", "unit", "%"))` increase in height of this person will increase weight on average by 5.102 `r mcq(c(answer = "pounds", "units", "%"))`, ceteris paribus. Make sure that you use reasonable height values when calculating the marginal effect.
+
+<br>
+
+## Question 2
+
+Why do economists usually stick with quadratic models, but do not consider cubic, quartic, or a polynomial of even higher order?
+
+`r hide("I need a hint")`
+
+Lecture 10 Part 2.
+
+`r unhide()`
+
+<br>
+
+## Question 3
+
+The output shows the results of regressing the logarithm of hourly earnings in USD on $S$ (educational attainment, in years), $EXP$ (work experience, in years), $AGE$ (in years), and $SAGE$, an interactive term defined as the product of $S$ and $AGE$. Derive the marginal effects of the coefficients of $S$ and $AGE$ and calculate their sizes at the mean values for $S$ and $AGE$. The mean of $S$ is 14.866 and the mean of $AGE$ was 28.932.
+
+![](images/regressionoutput2.png){width="600"}
+
+
+The correct estimated regression model is 
+
+\begin{equation*}
+   \widehat{LGEARN_i} = 6.962 -0.290 S_i+ 0.043 EXP_i-0.200AGE_i+0.013 SAGE_i
+  \end{equation*}
+
+Deriving and calculating the marginal effects of $S$, which is correct: `r mcq(c(answer = "Equation 1", "Equation 2", "Equation 3"))`
+
+`r hide("I need a hint")`
+
+Make use of the power rule, derivative of $X^2$ is $2X^{2-1} = 2X$
+
+`r unhide()`
+
+Equation 1: \begin{equation*}
+   \frac{\partial\widehat{LGEARN_i}}{\partial S_i} = -0.290 + 0.013AGE_i
+  \end{equation*}
+
+Equation 2: \begin{equation*}
+  \frac{\partial\widehat{LGEARN_i}}{\partial S_i} = -0.290 - 0.187AGE_i
+  \end{equation*}
+
+Equation 3: \begin{equation*}
+  \frac{\partial\widehat{LGEARN_i}}{\partial S_i} = -0.290 
+  \end{equation*}
+
+For a 28.932 year old person, $\frac{\partial\widehat{LGEARN_i}}{\partial S_i}=$`r fitb(0.086)` (Fill in with three decimal places). 
+
+The interpretation of this value is:
+one more year of education will increase hourly wages on averages by `r fitb(8.6)` (Fill in with one decimal places) `r mcq(c("dollars", "units", answer = "%"))`, ceteris paribus (Don’t forget that we have a semi-elasticity here!).
+
+$S$ is statistically significant at the 10\% significance level (p-value is `r fitb(0.089969)` (Fill in with five decimal places), which is only smaller than 10\% significance level) and the interaction $SAGE$ term is statistically significant at the 5\% significance level (p-value is `r fitb(0.025416)` (Fill in with five decimal places), which is smaller than 5\% significance level), showing that education is likely to have an impact on hourly earnings.
+
+<br>
+
+Deriving and calculating the marginal effects of $AGE$:
+
+\begin{equation*}
+  \frac{\partial\widehat{LGEARN_i}}{\partial AGE_i} =  -0.200 + 0.013S_i
+\end{equation*}
+
+For a person with 14.866 years of education, 
+\begin{equation*}
+   \frac{\partial\widehat{LGEARN_i}}{\partial AGE_i} = -0.200 + 0.013S_i=-0.200 + 0.013\times 14.866 =-0.0067
+  \end{equation*}
+
+The interpretation of this value is:
+One more year of age will decrease hourly wages on averages by `r fitb(0.67)` (Fill in with two decimal places) `r mcq(c("dollars", "units", answer = "%"))`, ceteris paribus (Don’t forget that we have a semi-elasticity here!). 
+
+Both Age (p-value is 0.026, which is smaller than 5\% significance level) and the interaction term (p-value is 0.025, which is smaller than 5\% significance level) are statistically `r mcq(c("insignificant", answer = "significant"))` at the 5\% significance level.
+
