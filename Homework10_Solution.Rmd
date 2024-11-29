@@ -70,7 +70,7 @@ The interpretation of this value is: A one `r mcq(c(answer = "inch", "unit", "%"
 `r hide("Solution")` 
 For example, if a person with a height of 70 inches, $\frac{\partial\widehat{Weight04_i}}{\partial Height_i}=5.102$
 
-The interpretation of this value is: A one `r mcq(c(answer = "inch", "unit", "%"))` increase in height of this person will increase weight on average by 5.102 pounds, ceteris paribus. Make sure that you use reasonable height values when calculating the marginal effect.
+The interpretation of this value is: A one inch increase in height of this person will increase weight on average by 5.102 pounds, ceteris paribus. Make sure that you use reasonable height values when calculating the marginal effect.
 `r unhide()`
 
 <br>
