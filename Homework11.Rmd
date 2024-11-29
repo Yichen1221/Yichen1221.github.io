@@ -1,0 +1,63 @@
+---
+title: "BS2280 – Econometrics I"
+output: webexercises::webexercises_default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(webexercises)
+```
+
+```{r, echo = FALSE, results='asis'}
+# Uncomment to change widget colours:
+#style_widgets(incorrect = "goldenrod", correct = "purple")
+```
+
+# Homework 11: Multi-collinearity
+
+## Question 1
+
+What is multi-collinearity and how does its presence affect your regression results?
+
+Multi-collinearity arises when a correlation exists between `r mcq(c(answer = "X", "Y", "X and Y"))` variables that move together, but that correlation is not perfect. There are two main problems:
+
+1.  Ceteris paribus will not hold anymore, making our marginal effect interpretations misleading.
+
+2.  The estimators have a larger variance, making precise estimation difficult. A larger variance means a low $t$ statistic and therefore statistically insignificant coefficients.
+
+<br>
+
+## Question 2
+
+Work experience is generally found to be an important determinant of earnings. If a direct measure is lacking in a data set, it is standard practice to use potential work experience, $PWE$, defined by
+
+```{=tex}
+\begin{equation*}
+  PWE = AGE – S – 5
+\end{equation*}
+```
+as a proxy. This is the maximum number of years since the completion of full-time education, assuming that an individual enters first grade at the age of six. We first regress $EARNINGS$ on $S$ and $PWE$, and then fit the regression a second time adding $AGE$ as well. Comment on the regression results.
+
+![](images/regressionoutput1-01.png){width="600"}
+
+When $AGE$ is added to the specification, one has an exact linear relationship among the variables ( `r mcq(c("S", "PWE", answer = "PWE and S"))`) and the regression cannot be performed. 
+
+In this situation, R drops one of the variables. Exact multicollinearity has occurred despite the fact that the variables are not perfectly correlated.
+
+<br>
+
+## Question 3
+
+We regress $S$ on $SM$, $SF$, $ASVABAR$ (arithmetic reasoning), $ASVABWK$ (word knowledge), and $ASVABPC$ (paragraph comprehension) , the three components of the $ASVABC$ composite score. Compare the coefficients and their standard errors with those of $ASVABC$ in a regression of $S$ on $SM$, $SF$, and $ASVABC$. Making also reference to the correlation table, is multi-collinearity present?
+
+![](images/regressionoutput2.png){width="600"}
+
+![](images/regressionoutput3.png){width="600"}
+
+According to the correlation table, `r mcq(c("ASVABAR and ASVABPC", "ASVABAR and ASVABWK", answer = "ASVABPC and ASVABWK"))` has the highest correlation coefficient, which is `r fitb(0.765)` (Fill in with three decimal places).
+
+`r mcq(c(answer = "ASVABAR and ASVABPC", "ASVABAR and ASVABWK", "ASVABPC and ASVABWK"))` also have highly correlation and the correlation coefficient is `r fitb(0.763)` (Fill in with three decimal places).
+
+As expected, the standard errors are `r mcq(c("the same as", "lower than", answer = "greater than"))` that for $ASVABC$ in previous regressions, indicating that multi-collinearity is present.
+
+
